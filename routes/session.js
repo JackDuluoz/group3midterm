@@ -23,13 +23,16 @@ router.get('/login', (req, res) => {
   if (currentUser !== undefined) {
     res.redirect('/');
   }
-  res.render("login", templateVars);
+  res.render('login', templateVars);
 });
 
 // Registration Page
 router.get('/register', (req, res) => {
   let currentUser = req.session.user_id;
   const templateVars = { currentUser: userDatabase[currentUser] };
+  if (currentUser !== undefined) {
+    res.redirect('/');
+  }
   res.render('register', templateVars );
 });
 
