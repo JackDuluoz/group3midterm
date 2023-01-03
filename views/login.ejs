@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Login</title>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/app.js"></script>
+</head>
+
+<body>
+  <header>
+    <%- include('partials/_header') %>
+  </header>
+    <h3>Login</h3>
+    <div class="form-group mb-2">
+      <form method="POST" action="/session/login">
+        <label for="user_id">E-mail:</label><br />
+        <input id="user_id" type="email" name="email" /><br />
+        <label for="password">Password:</label><br />
+        <input id="password" type="password" name="password" /><br />
+        <button type="submit" class="btn btn-primary">Login</button><br />
+      </form>
+    </div>
+</body>
+
+</html>
