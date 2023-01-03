@@ -1,9 +1,13 @@
 <header>
   <a class="navbar-brand" href="/">Jimmy's Shoes</a>
   <a class="nav-item nav-link" href="/listings/create">New Listing</a>
-  <a class="nav-item nav-link" href="/listings">My Listings</a>
-  <a class="nav-item nav-link" href="/transactions">My Transactions</a>
-  <a class="nav-item nav-link" href="/messages">My Messages</a>
+  <% if (!currentUser) { %>
   <a class="navbar-brand" href="/session/login">Login</a>
   <a class="navbar-brand" href="/session/register">Register</a>
+  <% } else { %>
+  <a class="nav-item nav-link" href="/listings">My Listings</a>
+  <a class="nav-item nav-link" href="/messages">My Messages</a>
+  <form method="POST" action="/session/logout" class="navbar-brand">Logged in as: <%= currentUser.email %>
+  <button type="submit" class="btn btn-primary">Logout</button></form>
+  <% } %>
 </header>
