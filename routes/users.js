@@ -16,7 +16,7 @@ router.use(cookieSession({
 
 const userDatabase = require('../userDatabase')
 
-// Users Database?
+// Users Database
 router.get('/', (req, res) => {
   res.render('users');
 });
@@ -28,7 +28,15 @@ router.get('/:userid', (req, res) => {
 
 // User Listings
 router.get('/:userid/listings', (req, res) => {
-  res.render('listings');
+  let currentUser = req.session.user_id;
+  const templateVars = { currentUser: userDatabase[currentUser] };
+  if (currentUser !== undefined) {
+    console.log('----------------------------')
+    console.log('CURRENT USER:', currentUser)
+    console.log('----------------------------')
+    res.render('listings', templateVars);
+  }
+  res.redirect('/session/login');
 });
 
 // User Messages (incoporate Ajax like Tweeter -- single page)
@@ -42,11 +50,6 @@ router.get('/:userid/messages', (req, res) => {
     res.render('messages', templateVars);
   }
   res.redirect('/session/login');
-});
-
-// User Transactions
-router.get('/:userid/transactions', (req, res) => {
-
 });
 
 module.exports = router;

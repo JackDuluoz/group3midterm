@@ -5,7 +5,7 @@
       <a class="nav-user" href="/session/login">Login</a>
       <a class="nav-user" href="/session/register">Register</a>
       <% } else { %>
-        <a class="nav-link" href="/listings">My Listings</a>
+        <a class="nav-link" href="/users/:userid/listings">My Listings</a>
         <a class="nav-link" href="/users/:userid/messages">Messages</a>
         <form method="POST" action="/session/logout" class="nav-user">Logged in as: <%= currentUser.email %>
             <button type="submit" class="nav-user">Logout</button></form>
