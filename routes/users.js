@@ -25,9 +25,12 @@ router.get('/', (req, res) => {
     })
 });
 
-// Account Profile
+// Account Profile for Individual User
 router.get('/:userid', (req, res) => {
-
+  userQueries.getUserById(req.params.userid)
+    .then((user) => {
+      res.json(user)
+    })
 });
 
 // User Listings

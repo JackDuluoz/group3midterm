@@ -16,7 +16,15 @@ router.get('/', (req, res) => {
     .then((listings) => {
       res.json(listings)
     })
- });
+});
+
+// Individual Listing Pages
+router.get('/:id', (req, res) => {
+  listingQueries.getListingById(req.params.id)
+    .then((listing) => {
+      res.json(listing)
+    })
+});
 
 // router.get('/', (req, res) => {
 //   let currentUser = req.session.user_id;

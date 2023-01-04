@@ -8,4 +8,12 @@ const getListings = () => {
     });
 };
 
-module.exports = { getListings };
+const getListingById = (id) => {
+  return db.query('SELECT * FROM listings WHERE id = $1', [id])
+    .then((listing) => {
+      console.log(listing.rows[0])
+      return listing.rows[0];
+    });
+};
+
+module.exports = { getListings, getListingById };

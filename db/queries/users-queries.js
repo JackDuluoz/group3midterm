@@ -2,10 +2,18 @@ const db = require('../connection');
 
 const getUsers = () => {
   return db.query('SELECT * FROM users;')
-    .then(data => {
-      console.log(data.rows)
-      return data.rows;
+    .then(users => {
+      console.log(users.rows)
+      return users.rows;
     });
 };
 
-module.exports = { getUsers };
+const getUserById = (id) => {
+  return db.query('SELECT * FROM users WHERE id = $1', [id])
+    .then(user => {
+      console.log(user.rows[0])
+      return user.rows[0];
+    });
+};
+
+module.exports = { getUsers, getUserById };
