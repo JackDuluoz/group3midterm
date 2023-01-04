@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS purchases CASCADE;
 DROP TABLE IF EXISTS listings CASCADE;
 
 CREATE TABLE users (
-  id INT PRIMARY KEY NOT NULL,
+  id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL,
   username VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
@@ -15,39 +15,40 @@ CREATE TABLE users (
 );
 
 CREATE TABLE listings (
-  id INT PRIMARY KEY NOT NULL,
-  user_id REFERENCES users(id) ON DELETE CASCADE,
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES users(id),
+  name VARCHAR(255),
   description TEXT,
   price VARCHAR(255),
   photo_url VARCHAR(255),
   size VARCHAR(255),
   gender VARCHAR(255),
   condition VARCHAR(255),
-  listing_date DATE NOT NULL,
-  sold_date DATE,
-  isSold VARCHAR(255)
+  listing_date TIMESTAMP NOT NULL,
+  sold_date TIMESTAMP,
+  isSold BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE favorites (
-  id INT PRIMARY KEY NOT NULL,
-  user_id REFERENCES users(id) ON DELETE CASCADE,
-  listing_id REFERENCES listings(id) ON DELETE CASCADE
-)
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES users(id),
+  listing_id INTEGER REFERENCES listings(id)
+);
 
 CREATE TABLE purchases (
-  id INT PRIMARY KEY NOT NULL,
-  user_id REFERENCES users(id) ON DELETE CASCADE,
-  listing_id REFERENCES listings(id) ON DELETE CASCADE,
-  purchase_date DATE
-)
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES users(id),
+  listing_id INTEGER REFERENCES listings(id),
+  purchase_date TIMESTAMP
+);
 
 CREATE TABLE messages (
-  id INT PRIMARY KEY NOT NULL,
-  user_id_from REFERENCES users(id) ON DELETE CASCADE,
-  user_id_to REFERENCES users(id) ON DELETE CASCADE,
+  id SERIAL PRIMARY KEY NOT NULL,
+  sender INTEGER REFERENCES users(id),
+  receiver INTEGER REFERENCES users(id),
   message TEXT,
-  time_sent DATE
-  )
+  time_sent TIMESTAMP
+  );
 
   
 
