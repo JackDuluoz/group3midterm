@@ -44,20 +44,6 @@ router.get('/:userid/messages', (req, res) => {
   res.redirect('/session/login');
 });
 
-// app.get("/u/:id", (req, res) => {
-//   const shortURL = req.params.id;
-//   for (let url in urlDatabase) {
-//     if (url === shortURL) {
-//       console.log("URL Found, Proceeding to Site");
-//       res.redirect(urlDatabase[shortURL].longURL);
-//       return;
-//     }
-//   }
-//   console.log("URL Not in Database");
-//   res.statusCode = 400;
-//   res.status(400).send("Error 400: URL Not in Database.");
-// });
-
 // User Transactions
 router.get('/:userid/transactions', (req, res) => {
 
