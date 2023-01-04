@@ -49,6 +49,7 @@ app.use('/listings', listingRoutes);
 app.use('/session', sessionRoutes)
 
 const userDatabase = require('./userDatabase')
+const listingQueries = require('./db/queries/listings-queries')
 
 // Note: mount other resources here, using the same pattern above
 
@@ -56,12 +57,19 @@ const userDatabase = require('./userDatabase')
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
+// require listingqueries
+
 app.get('/', (req, res) => {
   let currentUser = req.session.user_id;
   const templateVars = { currentUser: userDatabase[currentUser] };
-  console.log(currentUser)
-  console.log("USERS", userDatabase);
-  res.render('index', templateVars);
+  // console.log(currentUser)
+  // console.log("USERS", userDatabase);
+  listingQueries.getListings()
+    .then((listings) => {
+      templateVars.listings = listings
+      res.render('index', templateVars);
+  });
+
 });
 
 app.listen(PORT, () => {
