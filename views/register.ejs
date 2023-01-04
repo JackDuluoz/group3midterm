@@ -18,13 +18,14 @@
 
 <body>
       <%- include('partials/_header') %>
-      <h3>New Registration</h3>
-      <div class="form-group mb-2">
+      <h3 class="currentpage">/ register</h3>
+      <div class="userregister">
         <form method="POST" action="/session/register">
-          <label for="user_id">E-mail:</label><br />
+          <label for="user_id">email</label>
           <input id="user_id" type="email" name="email" /><br />
-          <label for="password">Password:</label><br />
+          <label for="password">password</label>
           <input id="password" type="password" name="password" /><br />
+          <br>
           <button type="submit" class="btn btn-primary">Register</button><br />
         </form>
       </div>
