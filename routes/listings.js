@@ -8,11 +8,28 @@ router.use(cookieSession({
 }));
 
 const userDatabase = require('../userDatabase')
+const listingQueries = require('../db/queries/listings-queries')
 
-
+// Listings Database
 router.get('/', (req, res) => {
+  listingQueries.getListings()
+    .then((listings) => {
+      res.json(listings)
+    })
+ });
 
-});
+// router.get('/', (req, res) => {
+//   let currentUser = req.session.user_id;
+//   const templateVars = { currentUser: userDatabase[currentUser] };
+//   if (currentUser !== undefined) {
+//     console.log('----------------------------')
+//     console.log('CURRENT USER:', currentUser)
+//     console.log('----------------------------')
+//     // res.send(getListings)
+//     res.render('listings', templateVars);
+//   }
+//   res.redirect('/session/login');
+// });
 
 // Create a new listing when logged in
 router.get('/create', (req, res) => {
