@@ -10,18 +10,41 @@
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
-  <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/newlisting.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
 </head>
 
 <body>
-  <header>
     <%- include('partials/_header') %>
-  </header>
-  <h1>Form to Create New Listing</h1>
+  <h1 class="currentpage">/ Create Listing</h1>
+
+  <form class="newlistingform" action="/???" method="post">
+    <label for="name">name</label>
+    <input type="text" id="name" name="name"><br>
+
+    <label for="description">description</label>
+    <input type="text" id="description" name="description"><br>
+
+    <label for="price">price</label>
+    <input type="text" id="price" name="price"><br>
+
+    <label for="size">size</label>
+    <input type="text" id="size" name="size"><br>
+
+    <label for="gender">gender</label>
+    <input type="text" id="gender" name="gender"><br>
+
+    <label for="condition">condition</label>
+    <input type="text" id="condition" name="condition"><br>
+    <br>
+
+    <button type="submit" class="newlistingsubmitbtn">List</button>
+  </form>
+
 </body>
 
 </html>
+
