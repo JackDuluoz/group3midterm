@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Home</title>
+  <title>/home</title>
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,21 +13,38 @@
   <link rel="stylesheet" href="/styles/layout.css" />
   <link rel="stylesheet" href="/styles/index.css" />
 
+    <!-- Font Awesome-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
 </head>
 
 <body>
   <%- include('partials/_header') %>
-    <h1 class="currentpage">/ Home</h1>
+    <h1 class="currentpage">/ home</h1>
     <div class="homebannerimages">
-      <img src="/images/yeezy750.JPG">
-      <img src="/images/jordan4.JPG">
+      <img
+        src="/images/yeezy750.JPG">
+      <img
+        src="/images/jordan4.JPG">
     </div>
-    <h1>Public Access to Home Page Even When Logged Out</h1>
+    <h1 class="filter">filter  <i class="fa-solid fa-filter"></i></h1>
+    <form class="filter" action="/???" method="post">
+        <label for="min">min $</label>
+        <input type="text" id="min" name="min">
+        <label for="min">max $</label>
+        <input type="text" id="max" name="max">
+
+        <button type="submit" class="favorite">favorites</button>
+        <button type="submit" class="available">available?</button>
+    </form>
+    </div>
 
     <section class="listings">
-    
+
     </section>
 </body>
 

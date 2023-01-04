@@ -26,6 +26,12 @@ body {
   width: 90%
 }
 
+.filter,
 .currentpage {
   font-size: 1.2rem;
+}
+
+input{
+  border: none;
+  border-bottom: 1px solid black;
 }
