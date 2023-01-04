@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/contact-form.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
@@ -19,6 +20,43 @@
 <body>
     <%- include('partials/_header') %>
   <h1 class="currentpage"> / messages</h1>
+
+  <div class="fcf-body">
+
+    <div id="fcf-form">
+    <h3 class="fcf-h3">Contact seller</h3>
+
+    <form id="fcf-form-id" class="fcf-form-class" method="post" action="./contact-form-process.php">
+
+        <div class="fcf-form-group">
+            <label for="Name" class="fcf-label"> Your name</label>
+            <div class="fcf-input-group">
+                <input type="text" id="Name" name="Name" class="fcf-form-control" required>
+            </div>
+        </div>
+
+        <div class="fcf-form-group">
+            <label for="Email" class="fcf-label">Your email address</label>
+            <div class="fcf-input-group">
+                <input type="email" id="Email" name="Email" class="fcf-form-control" required>
+            </div>
+        </div>
+
+        <div class="fcf-form-group">
+            <label for="Message" class="fcf-label">Your message</label>
+            <div class="fcf-input-group">
+                <textarea id="Message" name="Message" class="fcf-form-control" rows="6" maxlength="3000" required></textarea>
+            </div>
+        </div>
+
+        <div class="fcf-form-group">
+            <button type="submit" id="fcf-button" class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block">Send email</button>
+        </div>
+
+    </form>
+    </div>
+
+</div>
 </body>
 
 </html>
