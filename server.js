@@ -36,7 +36,6 @@ app.use(cookieSession({
 const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const userRoutes = require('./routes/users.js');
-const messageRoutes = require('./routes/messages.js');
 const listingRoutes = require('./routes/listings.js');
 const sessionRoutes = require('./routes/session.js')
 
@@ -47,7 +46,6 @@ app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', userRoutes);
 //The next three will be replaced once :userid has been established
-app.use('/messages', messageRoutes);
 app.use('/listings', listingRoutes);
 
 app.use('/session', sessionRoutes)
