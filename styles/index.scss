@@ -1,0 +1,12 @@
+/* scss for home page */
+
+.homebannerimages {
+ display:flex;
+ flex-direction: row;
+ justify-content: space-evenly;
+}
+
+img{
+  max-width: 20rem;
+  max-height: 20rem;
+}
