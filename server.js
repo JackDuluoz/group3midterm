@@ -45,9 +45,7 @@ const sessionRoutes = require('./routes/session.js')
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', userRoutes);
-//The next three will be replaced once :userid has been established
 app.use('/listings', listingRoutes);
-
 app.use('/session', sessionRoutes)
 
 const userDatabase = require('./userDatabase')

@@ -15,10 +15,14 @@ router.use(cookieSession({
 }));
 
 const userDatabase = require('../userDatabase')
+const userQueries = require('../db/queries/users-queries')
 
 // Users Database
 router.get('/', (req, res) => {
-  res.render('users');
+  userQueries.getUsers()
+    .then((users) => {
+      res.json(users)
+    })
 });
 
 // Account Profile
