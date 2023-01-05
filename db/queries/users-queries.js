@@ -37,7 +37,6 @@ const getUserName = (buyerId) => {
   //return Promise.resolve('bob');
 };
 
-module.exports = { getUsers, getUserById, getBuyerEmail, getSellerEmail, getUserName };
 const checkUserByEmail = (email) => {
   return db.query('SELECT * FROM users WHERE email = $1', [email])
     .then(email => {
@@ -64,4 +63,4 @@ const addUser = (email, password) => {
 
 };
 
-module.exports = { getUsers, getUserById, checkUserByEmail, addUser, getUserIdByEmail };
+module.exports = { getUsers, getUserById, checkUserByEmail, addUser, getUserIdByEmail, getBuyerEmail, getSellerEmail, getUserName};
