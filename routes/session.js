@@ -8,18 +8,12 @@ router.use(cookieSession({
   keys: ['key1', 'key2']
 }));
 
-// User Database
-
-const userDatabase = require('../userDatabase')
-
-// Helper Functions
-
-const { shortURLGenerator, getUserByEmail } = require('../helpers')
+const userQueries = require('../db/queries/users-queries')
 
 // Login Page
 router.get('/login', (req, res) => {
   let currentUser = req.session.user_id;
-  const templateVars = { currentUser: userDatabase[currentUser] };
+  const templateVars = { currentUser };
   if (currentUser !== undefined) {
     res.redirect('/');
   }
@@ -29,7 +23,7 @@ router.get('/login', (req, res) => {
 // Registration Page
 router.get('/register', (req, res) => {
   let currentUser = req.session.user_id;
-  const templateVars = { currentUser: userDatabase[currentUser] };
+  const templateVars = { currentUser };
   if (currentUser !== undefined) {
     res.redirect('/');
   }
@@ -40,44 +34,55 @@ router.get('/register', (req, res) => {
 router.post('/login', (req, res) => {
   let email = req.body.email;
   let password = req.body.password;
-  const user = getUserByEmail(email, userDatabase);
-  if (user && (bcrypt.compareSync(password, userDatabase[user].password) === true)) {
-    console.log("Credentials Match");
-    req.session.user_id = userDatabase[user].id;
-    res.redirect('/');
+  if (email === "" || password === "") {
+    console.log("Username and/or Password Empty");
+    res.status(404).send("Error 400: Username and/or Password Empty.");
     return;
   }
-  console.log("User Not Found");
-  res.statusCode = 403;
-  res.status(403).send("Error 403: User Not Found.");
+  userQueries.checkUserByEmail(email)
+    .then((user) => {
+      console.log(user)
+      if (user && (bcrypt.compareSync(password, user.password) === true)) {
+        console.log("Credentials Match");
+        req.session.user_id = user.id;
+        res.redirect('/');
+        return;
+      }
+      console.log("User Not Found");
+      res.statusCode = 403;
+      res.status(403).send("Error 403: User Not Found.");
+    })
 });
 
 // Form Sumission to Register
 router.post('/register', (req, res) => {
-  const id = shortURLGenerator();
   const newEmail = req.body.email;
   const newPassword = req.body.password;
   const hashedNewPassword = bcrypt.hashSync(newPassword, 10);
   if (newEmail === "" || newPassword === "") {
     console.log("Username and/or Password Empty");
-    res.statusCode = 400;
     res.status(404).send("Error 400: Username and/or Password Empty.");
     return;
   }
-  for (let user in userDatabase) {
-    if (newEmail === userDatabase[user].email) {
-      console.log("User Already Registered");
-      res.statusCode = 400;
-      res.status(404).send("Error 400: User Already Registered.");
-      return;
-    }
-  }
-  userDatabase[id] = { id: id, email: newEmail, password: hashedNewPassword };
-  req.session.user_id = id;
-  console.log("USERS", userDatabase);
-  let currentUser = req.session.user_id;
-  console.log(currentUser)
-  res.redirect('/');
+  userQueries.getUsers()
+    .then((users) => {
+      for (let user of users) {
+        if (newEmail === user.email) {
+          console.log("User Already Registered");
+          res.status(404).send("Error 400: User Already Registered.");
+        }
+      }
+    })
+    .then(() => {
+      userQueries.addUser(newEmail, hashedNewPassword)
+      userQueries.getUserIdByEmail(newEmail)
+        .then((userId) => {
+          req.session.user_id = userId.id
+          let currentUser = req.session.user_id;
+          console.log(currentUser)
+          res.redirect('/');
+    })
+  })
 });
 
 // Click Button to Logout

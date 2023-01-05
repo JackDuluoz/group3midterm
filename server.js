@@ -54,6 +54,7 @@ app.use('/send-email', sendEmailRoutes);
 
 const userDatabase = require('./userDatabase')
 const listingQueries = require('./db/queries/listings-queries')
+const userQueries = require('./db/queries/users-queries')
 
 // Note: mount other resources here, using the same pattern above
 
@@ -63,8 +64,7 @@ const listingQueries = require('./db/queries/listings-queries')
 
 app.get('/', (req, res) => {
   let currentUser = req.session.user_id;
-  const templateVars = { currentUser: userDatabase[currentUser] };
-  // console.log(currentUser)
+  const templateVars = { currentUser };
   listingQueries.getListings()
     .then((listings) => {
       templateVars.listings = listings
