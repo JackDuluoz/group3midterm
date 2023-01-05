@@ -16,6 +16,7 @@ router.use(cookieSession({
 
 const userDatabase = require('../userDatabase')
 const userQueries = require('../db/queries/users-queries')
+const listingQueries = require('../db/queries/listings-queries')
 
 // Users Database
 router.get('/', (req, res) => {
@@ -36,14 +37,19 @@ router.get('/:userid', (req, res) => {
 // User Listings
 router.get('/:userid/listings', (req, res) => {
   let currentUser = req.session.user_id;
+  let userid = req.params.userid
+  // console.log("USER ID:", userid)
   const templateVars = { currentUser: userDatabase[currentUser] };
   if (currentUser !== undefined) {
-    // console.log('----------------------------')
-    // console.log('CURRENT USER:', currentUser)
-    // console.log('----------------------------')
-    res.render('listings', templateVars);
+
+    listingQueries.getListingsByUser(userid)
+      .then((listings) => {
+        templateVars.listings = listings
+        console.log(listings)
+        res.render('listings', templateVars);
+      })
   }
-  res.redirect('/session/login');
+  // res.redirect('/session/login');
 });
 
 // User Messages (incoporate Ajax like Tweeter -- single page)
@@ -51,9 +57,6 @@ router.get('/:userid/messages', (req, res) => {
   let currentUser = req.session.user_id;
   const templateVars = { currentUser: userDatabase[currentUser] };
   if (currentUser !== undefined) {
-    // console.log('----------------------------')
-    // console.log('CURRENT USER:', currentUser)
-    // console.log('----------------------------')
     res.render('messages', templateVars);
   }
   res.redirect('/session/login');

@@ -1,0 +1,24 @@
+<article class="indivlisting">
+    <section class="listingimage">
+      <img src="/images/yeezy750.JPG">
+    </section>
+    <section class="listingdata">
+      <h3 class="listingtitle">${listing.name}</h3>
+      <ul class="listingspecifics">
+        <li>Description: ${listing.description}</li>
+        <li>Price: ${listing.price}</li>
+        <li>Size: ${listing.size}</li>
+        <li>Gender: ${listing.gender}</li>
+        <li>Condition: ${listing.condition}</li>
+      </ul>
+    </section>
+    <section class="mylistingedits">
+      <form method="POST" action="/users/:userid/listings">
+        <button type="submit" class="btn btn-primary">Sold</button><br>
+      </form>
+      <br>
+      <form method="DELETE" action="/users/:userid/listings">
+        <button type="submit" class="btn btn-primary">Delete</button><br>
+      </form>
+    </section>
+  </article>
