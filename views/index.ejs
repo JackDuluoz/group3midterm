@@ -26,17 +26,15 @@
   <%- include('partials/_header') %>
     <h1 class="currentpage">/ home</h1>
     <h1 class="filter">filter  <i class="fa-solid fa-filter"></i></h1>
-    <form class="filter" action="/???" method="post">
-        <label for="min">min $</label>
-        <input type="text" id="min" name="min">
-        <label for="min">max $</label>
-        <input type="text" id="max" name="max">
+    <form action="/" method="post">
+        <label for="minPrice">min $</label>
+        <input type="text" id="min" name="minPrice">
+        <label for="maxPrice">max $</label>
+        <input type="text" id="max" name="maxPrice">
 
-        <button type="submit" class="favorite">favorites</button>
-        <button type="submit" class="available">available?</button>
+        <button type="submit">filter</button>
     </form>
     </div>
-
       <table>
         <thead>
           <tr>

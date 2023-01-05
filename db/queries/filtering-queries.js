@@ -1,3 +1,4 @@
+const { restart } = require('nodemon');
 const db = require('../connection');
 
 const minPrice = (price) => {
@@ -40,12 +41,9 @@ const sold = () => {
   });
 };
 
-// const allListings = () => {
-//   return db.query(`SELECT * FROM listings
-//   `).then((data) => {
-//     // console.log(data.rows)
-//     return data.rows;
-//   });
-// };
+const addToFavorites = (user_id, listing_id) => {
+  return db.query(`INSERT INTO favorites 
+  VALUES ($1, $2)`, [user_id, listing_id]);
+};
 
-module.exports = { minPrice, maxPrice, favorites, available, sold };
+module.exports = { minPrice, maxPrice, favorites, available, sold, addToFavorites };
