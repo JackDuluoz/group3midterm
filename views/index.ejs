@@ -49,6 +49,7 @@
             <th>Gender</th>
             <th>Condition</th>
             <th>Listing Date</th>
+            <th>Message Seller</th>
           </tr>
         </thead>
         <tbody id="data-output">
@@ -63,6 +64,11 @@
           <td><%= listing.gender %></td>
           <td><%= listing.condition %></td>
           <td><%= listing.listing_date %></td>
+          <td>
+            <form method="GET" action="/users/:userid/messages">
+            <button type="submit" class="btn btn-primary">Message Seller</button><br>
+            </form>
+          </td>
         </tr>
         <%}%>
         </tbody>
