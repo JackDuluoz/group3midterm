@@ -19,7 +19,7 @@ CREATE TABLE listings (
   user_id INTEGER REFERENCES users(id),
   name VARCHAR(255),
   description TEXT,
-  price VARCHAR(255),
+  price INTEGER,
   photo_url VARCHAR(255),
   size VARCHAR(255),
   gender VARCHAR(255),

@@ -39,7 +39,6 @@ const userRoutes = require('./routes/users.js');
 const listingRoutes = require('./routes/listings.js');
 const createRoutes = require('./routes/create.js');
 const sessionRoutes = require('./routes/session.js');
-const sendEmailRoutes = require('./routes/sendemail.js');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -52,9 +51,9 @@ app.use('/create', createRoutes);
 app.use('/session', sessionRoutes);
 app.use('/send-email', sendEmailRoutes);
 
-const userDatabase = require('./userDatabase')
-const listingQueries = require('./db/queries/listings-queries')
-const userQueries = require('./db/queries/users-queries')
+const userDatabase = require('./userDatabase');
+const listingQueries = require('./db/queries/listings-queries');
+const userQueries = require('./db/queries/users-queries');
 
 // Note: mount other resources here, using the same pattern above
 
@@ -67,9 +66,27 @@ app.get('/', (req, res) => {
   const templateVars = { currentUser };
   listingQueries.getListings()
     .then((listings) => {
-      templateVars.listings = listings
+      templateVars.listings = listings;
       res.render('index', templateVars);
-  });
+    });
+});
+
+app.post('/', (req, res) => {
+  let currentUser = req.session.user_id;
+
+  // console.log(req.body);
+  let minPrice = req.body.minPrice;
+  let maxPrice = req.body.maxPrice;
+  let options = { minPrice, maxPrice };
+
+  const templateVars = { currentUser: userDatabase[currentUser] };
+  // console.log(currentUser)
+
+  listingQueries.getListings(options)
+    .then((listings) => {
+      templateVars.listings = listings;
+      res.render('index', templateVars);
+    });
 });
 
 app.listen(PORT, () => {
