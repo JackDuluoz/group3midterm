@@ -36,14 +36,12 @@ Promise.all(listOfInfo)
 .then(
   () => {
     res.redirect('/');
-    //add alert for success
   }
 )
 .catch(
   (err) => {
     console.log('err', err);
     res.redirect('/');
-    //add alert for success
   }
 )
 
