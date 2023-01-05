@@ -45,7 +45,7 @@ router.get('/:userid/listings', (req, res) => {
     listingQueries.getListingsByUser(userid)
       .then((listings) => {
         templateVars.listings = listings
-        console.log(listings)
+        // console.log(listings)
         res.render('listings', templateVars);
       })
   }
