@@ -5,16 +5,17 @@ client.setApiKey(process.env.SENDGRID_API_KEY);
 //const apiKey = `${process.env.SENDGRID_API_KEY}`;
 //console.log('api key', apiKey);
 
-const msg = {
-  to: 'kirsty.hammond@hotmail.co.uk', // Change to your recipient
-  from: 'kirstenhammondrvn@gmail.com', // Change to your verified sender
-  subject: 'Sending with SendGrid is Fun',
-  text: 'and easy to do anywhere, even with Node.js',
-  html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-}
 
-const sendEmailToClient = () => {
-client
+const sendEmailToClient = (sellerEmail, buyerEmail, listingName, userName ) => {//do I need parameters in here?
+  const msg = {
+    to: sellerEmail, // req.body here?
+    from: 'kirstenhammondrvn@gmail.com', // The sendgrid verified sender (stays as hardcode for now)
+    replyTo: buyerEmail,
+    subject: listingName,
+    text:   `${userName} has sent you an email and is interested in buying your ${listingName}. Please reply to this email to respond to them directly.`,
+  }
+
+  client
   .send(msg)
   .then(() => console.log('Mail sent successfully'))
   .catch(error => {
@@ -23,4 +24,7 @@ client
   })
 };
 
-sendEmailToClient();
+module.exports = sendEmailToClient;
+
+//sendEmailToClient(); //do I call the function here?
+

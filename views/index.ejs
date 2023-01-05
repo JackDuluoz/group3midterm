@@ -49,6 +49,8 @@
             <th>Gender</th>
             <th>Condition</th>
             <th>Listing Date</th>
+            <th>Email Seller</th>
+            <th>Favourite</th>
           </tr>
         </thead>
         <tbody id="data-output">
@@ -63,6 +65,16 @@
           <td><%= listing.gender %></td>
           <td><%= listing.condition %></td>
           <td><%= listing.listing_date %></td>
+          <td>
+            <form id="sendEmail- <%=listing.id%>" action="/send-email" method="post">
+              <button type="submit">Send</button>
+            </form>
+          </td>
+          <td>
+            <form id="favorite-item" action="/" method="put">
+              <button type="submit">fav</button>
+            </form>
+          </td>
         </tr>
         <%}%>
         </tbody>
