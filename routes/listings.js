@@ -26,29 +26,6 @@ router.get('/:id', (req, res) => {
     })
 });
 
-// router.get('/', (req, res) => {
-//   let currentUser = req.session.user_id;
-//   const templateVars = { currentUser: userDatabase[currentUser] };
-//   if (currentUser !== undefined) {
-//     console.log('----------------------------')
-//     console.log('CURRENT USER:', currentUser)
-//     console.log('----------------------------')
-//     // res.send(getListings)
-//     res.render('listings', templateVars);
-//   }
-//   res.redirect('/session/login');
-// });
-
-// Create a new listing when logged in
-router.get('/create', (req, res) => {
-  let currentUser = req.session.user_id;
-  const templateVars = { currentUser: userDatabase[currentUser] };
-  if (currentUser !== undefined) {
-    res.render("create", templateVars);
-  }
-  res.redirect('/session/login');
-});
-
 // Create a new listing when logged in
 router.post('/', (req, res) => {
 

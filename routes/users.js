@@ -38,9 +38,9 @@ router.get('/:userid/listings', (req, res) => {
   let currentUser = req.session.user_id;
   const templateVars = { currentUser: userDatabase[currentUser] };
   if (currentUser !== undefined) {
-    console.log('----------------------------')
-    console.log('CURRENT USER:', currentUser)
-    console.log('----------------------------')
+    // console.log('----------------------------')
+    // console.log('CURRENT USER:', currentUser)
+    // console.log('----------------------------')
     res.render('listings', templateVars);
   }
   res.redirect('/session/login');
@@ -51,9 +51,9 @@ router.get('/:userid/messages', (req, res) => {
   let currentUser = req.session.user_id;
   const templateVars = { currentUser: userDatabase[currentUser] };
   if (currentUser !== undefined) {
-    console.log('----------------------------')
-    console.log('CURRENT USER:', currentUser)
-    console.log('----------------------------')
+    // console.log('----------------------------')
+    // console.log('CURRENT USER:', currentUser)
+    // console.log('----------------------------')
     res.render('messages', templateVars);
   }
   res.redirect('/session/login');

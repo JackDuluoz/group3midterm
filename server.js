@@ -37,6 +37,7 @@ const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const userRoutes = require('./routes/users.js');
 const listingRoutes = require('./routes/listings.js');
+const createRoutes = require('./routes/create.js');
 const sessionRoutes = require('./routes/session.js')
 
 // Mount all resource routes
@@ -46,6 +47,7 @@ app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', userRoutes);
 app.use('/listings', listingRoutes);
+app.use('/create', createRoutes)
 app.use('/session', sessionRoutes)
 
 const userDatabase = require('./userDatabase')
@@ -57,19 +59,15 @@ const listingQueries = require('./db/queries/listings-queries')
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-// require listingqueries
-
 app.get('/', (req, res) => {
   let currentUser = req.session.user_id;
   const templateVars = { currentUser: userDatabase[currentUser] };
   // console.log(currentUser)
-  // console.log("USERS", userDatabase);
   listingQueries.getListings()
     .then((listings) => {
       templateVars.listings = listings
       res.render('index', templateVars);
   });
-
 });
 
 app.listen(PORT, () => {
