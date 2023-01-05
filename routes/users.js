@@ -39,7 +39,7 @@ router.get('/:userid/listings', (req, res) => {
   let currentUser = req.session.user_id;
   let userid = req.params.userid
   // console.log("USER ID:", userid)
-  const templateVars = { currentUser: userDatabase[currentUser] };
+  const templateVars = { currentUser };
   if (currentUser !== undefined) {
 
     listingQueries.getListingsByUser(userid)
