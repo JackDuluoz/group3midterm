@@ -16,4 +16,15 @@ const getListingById = (id) => {
     });
 };
 
-module.exports = { getListings, getListingById };
+const getListingByUser = (id) => {
+  return db.query('SELECT * FROM listings WHERE user_id = $1', [user_id])
+    .then((listing) => {
+      // console.log(listing.rows[0])
+      return listing.rows;
+    });
+};
+
+module.exports = { getListings, getListingById, getListingByUser };
+
+// \i db/schema/schema.sql
+// \i db/seeds/seeds.sql
