@@ -16,4 +16,28 @@ const getUserById = (id) => {
     });
 };
 
-module.exports = { getUsers, getUserById };
+const getBuyerEmail = (buyerId) => {
+  /* return db.query('SELECT email FROM users WHERE id = $1', [buyerId])
+  .then(res => {
+    return res.rows[0].email;
+  }) */
+  return Promise.resolve('bob@bob.com');
+};
+
+const getSellerEmail = (listingId) => {
+/*   return db.query('SELECT email FROM users JOIN listings ON listings.user_id = users.id WHERE listings.id = $1', [listingId])
+  .then(res => {
+    return res.rows[0].email;
+  }) */
+  return Promise.resolve('kirstenhammondrvn@gmail.com');
+};
+
+const getUserName = (buyerId) => {
+  /* return db.query('SELECT name FROM users WHERE users.id = $1', [buyerId])
+  .then(res => {
+    return res.rows[0].name;
+  }) */
+  return Promise.resolve('bob');
+};
+
+module.exports = { getUsers, getUserById, getBuyerEmail, getSellerEmail, getUserName };

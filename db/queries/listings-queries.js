@@ -21,7 +21,15 @@ const getListingsByUser = (user_id) => {
     });
 };
 
-module.exports = { getListings, getListingById, getListingsByUser };
+const getListingName = (listingId) => {
+  return db.query('SELECT name FROM listings WHERE id = $1', [listingId])
+    .then((res) => {
+      return res.rows[0].name; //name.rows[0]
+    });
+};
+
+
+module.exports = { getListings, getListingById, getListingsByUser, getListingName };
 
 // \i db/schema/schema.sql
 // \i db/seeds/seeds.sql
