@@ -40,14 +40,12 @@ const sold = () => {
   });
 };
 
-const allListings = () => {
-  return db.query(`SELECT * FROM listings
-  `).then((data) => {
-    // console.log(data.rows)
-    return data.rows;
-  });
-};
+// const allListings = () => {
+//   return db.query(`SELECT * FROM listings
+//   `).then((data) => {
+//     // console.log(data.rows)
+//     return data.rows;
+//   });
+// };
 
-
-
-
+module.exports = { minPrice, maxPrice, favorites, available, sold };
