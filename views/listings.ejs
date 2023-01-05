@@ -21,30 +21,34 @@
     <%- include('partials/_header') %>
   <h1 class="currentpage"> / my listings</h1>
 
-  <article class="indivlisting">
-    <section class="listingimage">
-      <img src="/images/yeezy750.JPG">
-    </section>
-    <section class="listingdata">
-      <h3 class="listingtitle">${listing.name}</h3>
-      <ul class="listingspecifics">
-        <li>Description: ${listing.description}</li>
-        <li>Price: ${listing.price}</li>
-        <li>Size: ${listing.size}</li>
-        <li>Gender: ${listing.gender}</li>
-        <li>Condition: ${listing.condition}</li>
-      </ul>
-    </section>
-    <section class="mylistingedits">
-      <form method="POST" action="/users/:userid/listings">
-        <button type="submit" class="btn btn-primary">Sold</button><br>
-      </form>
-      <br>
-      <form method="DELETE" action="/users/:userid/listings">
-        <button type="submit" class="btn btn-primary">Delete</button><br>
-      </form>
-    </section>
-  </article>
+  <table>
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Size</th>
+        <th>Gender</th>
+        <th>Condition</th>
+        <th>Listing Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (listing of listings) {%>
+        <tr>
+          <td><img src="<%= listing.photo_url %>" /></td>
+          <td><%= listing.name %></td>
+          <td><%= listing.description %></td>
+          <td><%= listing.price %></td>
+          <td><%= listing.size %></td>
+          <td><%= listing.gender %></td>
+          <td><%= listing.condition %></td>
+          <td><%= listing.listing_date %></td>
+        </tr>
+        <%}%>
+    </tbody>
+  </table>
 </body>
 
 </html>

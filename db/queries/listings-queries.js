@@ -3,7 +3,6 @@ const db = require('../connection');
 const getListings = () => {
   return db.query('SELECT * FROM listings;')
     .then((data) => {
-      // console.log(data.rows)
       return data.rows;
     });
 };
@@ -11,20 +10,18 @@ const getListings = () => {
 const getListingById = (id) => {
   return db.query('SELECT * FROM listings WHERE id = $1', [id])
     .then((listing) => {
-      // console.log(listing.rows[0])
       return listing.rows[0];
     });
 };
 
-const getListingByUser = (id) => {
+const getListingsByUser = (user_id) => {
   return db.query('SELECT * FROM listings WHERE user_id = $1', [user_id])
-    .then((listing) => {
-      // console.log(listing.rows[0])
-      return listing.rows;
+    .then((listings) => {
+      return listings.rows;
     });
 };
 
-module.exports = { getListings, getListingById, getListingByUser };
+module.exports = { getListings, getListingById, getListingsByUser };
 
 // \i db/schema/schema.sql
 // \i db/seeds/seeds.sql
