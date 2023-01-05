@@ -39,6 +39,8 @@ const userRoutes = require('./routes/users.js');
 const listingRoutes = require('./routes/listings.js');
 const createRoutes = require('./routes/create.js');
 const sessionRoutes = require('./routes/session.js');
+const sendEmailRoutes = require('./routes/sendemail.js');
+
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
