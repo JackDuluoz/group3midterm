@@ -13,6 +13,7 @@
   "author": "Lighthouse Labs",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
     "bcryptjs": "^2.4.3",
     "chalk": "^2.4.2",
     "cookie-session": "^2.0.0",
