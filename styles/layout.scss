@@ -14,12 +14,28 @@ header {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+
+}
+
+button {
+  border: 0.1rem solid;
+}
+
+button:not(.fa-regular):hover {
+  box-shadow: 0.15rem 0.15rem grey;
+  cursor: pointer;
 }
 
 .nav-logo{
   flex-grow: 0.7;
+  font-size: 1.5rem;
+  text-decoration: none;
 }
 
+.nav-user,
+.nav-link{
+  text-decoration: none;
+}
 
 body {
   margin: auto;
@@ -33,5 +49,7 @@ body {
 
 input{
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid black
 }
+
+
