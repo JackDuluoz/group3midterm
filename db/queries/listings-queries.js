@@ -49,8 +49,17 @@ const getListingName = (listingId) => {
     });
 };
 
+const addListing = (userId, name, description, price, size, gender, condition) => {
+  return db.query(`INSERT INTO listings (user_id, name, description, price, photo_url, size, gender, condition, listing_date, sold_date, isSold)
+                  VALUES ($1, $2, $3, $4, 'https://process.fs.grailed.com/AJdAgnqCST4iPtnUxiGtTz/auto_image/cache=expiry:max/rotate=deg:exif/output=quality:90/compress/PJz2ugNrQx28qykcwwFH', $5, $6, $7, CURRENT_TIMESTAMP, null, false) RETURNING *`,
+    [userId, name, description, price, size, gender, condition])
+    .then(result => {
+      console.log(result.rows[0])
+      return result.rows[0];
+    });
+};
 
-module.exports = { getListings, getListingById, getListingsByUser, getListingName };
+module.exports = { getListings, getListingById, getListingsByUser, getListingName, addListing };
 
 // \i db/schema/schema.sql
 // \i db/seeds/seeds.sql
