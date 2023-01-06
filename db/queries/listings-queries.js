@@ -68,7 +68,16 @@ const addListing = (userId, name, description, price, size, gender, condition) =
     });
 };
 
-module.exports = { getListings, getListingById, getListingsByUser, getListingName, addListing, deleteListingQuery };
+//mark as sold query
+const markAsSoldQuery = (listingId) => {
+  return db.query(`UPDATE listings SET name = 'SOLD', description = 'SOLD' WHERE listings.id = $1 `, [listingId])
+  .then((res) => {
+    console.log('listing marked as sold', res);
+  });
+}
+
+
+module.exports = { getListings, getListingById, getListingsByUser, getListingName, addListing, deleteListingQuery, markAsSoldQuery };
 
 // \i db/schema/schema.sql
 // \i db/seeds/seeds.sql

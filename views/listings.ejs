@@ -62,7 +62,7 @@
               <%= listing.listing_date %>
             </td>
             <td>
-              <form method="POST" action="/users/:userid/listings">
+              <form method="POST" action="/listings/sold/<%= listing.id %>">
                 <button type="submit" class="btn btn-primary">Sold</button><br>
               </form>
             </td>

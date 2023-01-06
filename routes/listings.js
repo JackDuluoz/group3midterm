@@ -39,4 +39,19 @@ router.post('/:listingId', (req, res) => {
     })
 });
 
+// mark as sold
+router.post('/sold/:listingId', (req, res) => {
+  const userId = req.session.user_id;
+  const listingId = req.params.listingId;
+
+  listingQueries.markAsSoldQuery(listingId)
+    .then(() => {
+      res.redirect(`/users/${userId}/listings`);
+    })
+    .catch((err) => {
+      console.log('err', err);
+    })
+});
+
+
 module.exports = router;
