@@ -65,16 +65,14 @@ router.post('/register', (req, res) => {
     res.status(404).send("Error 400: Username and/or Password Empty.");
     return;
   }
-  userQueries.getUsers()
-    .then((users) => {
-      for (let user of users) {
-        if (newEmail === user.email) {
-          console.log("User Already Registered");
-          res.status(404).send("Error 400: User Already Registered.");
-        }
+  userQueries.checkUserByEmail(newEmail)
+    .then((user) => {
+      if (user) {
+        console.log("User Already Registered");
+        res.status(404).send("Error 400: User Already Registered.");
+        return
       }
-    })
-    .then(() => {
+      console.log("Proceed with Registration");
       userQueries.addUser(newEmail, hashedNewPassword)
       userQueries.getUserIdByEmail(newEmail)
         .then((userId) => {
@@ -82,8 +80,8 @@ router.post('/register', (req, res) => {
           let currentUser = req.session.user_id;
           console.log(currentUser)
           res.redirect('/');
-    })
-  })
+        })
+    });
 });
 
 // Click Button to Logout and Empty Cookie Session
