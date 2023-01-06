@@ -8,15 +8,21 @@ router.use(cookieSession({
 }));
 
 const listingQueries = require('../db/queries/listings-queries')
+const userQueries = require('../db/queries/users-queries')
 
 // Access page to create new listing when logged in
 router.get('/', (req, res) => {
   let currentUser = req.session.user_id;
   const templateVars = { currentUser };
-  if (currentUser !== undefined) {
-    res.render("create", templateVars);
+  if (currentUser === undefined) {
+    res.redirect('/session/login');
+    return
   }
-  res.redirect('/session/login');
+  userQueries.getUserById(currentUser)
+    .then((userDetails) => {
+      templateVars.userDetails = userDetails
+      res.render("create", templateVars);
+    })
 });
 
 // Submit form to add listing to database

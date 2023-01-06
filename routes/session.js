@@ -9,6 +9,7 @@ router.use(cookieSession({
 }));
 
 const userQueries = require('../db/queries/users-queries')
+const listingQueries = require('../db/queries/listings-queries')
 
 // Login Page
 router.get('/login', (req, res) => {

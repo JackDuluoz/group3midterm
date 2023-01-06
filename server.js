@@ -68,29 +68,35 @@ app.get('/', (req, res) => {
   listingQueries.getListings()
     .then((listings) => {
       templateVars.listings = listings;
-      res.render('index', templateVars);
-    });
+    })
+    .then(() => {
+      userQueries.getUserById(currentUser)
+        .then((userDetails) => {
+        templateVars.userDetails = userDetails
+        res.render('index', templateVars);
+      })
+    })
 });
 
 app.post('/', (req, res) => {
   let currentUser = req.session.user_id;
-
-  // console.log(req.body);
   let minPrice = req.body.minPrice;
   let maxPrice = req.body.maxPrice;
   let options = { minPrice, maxPrice };
-
   const templateVars = { currentUser };
-  // console.log(currentUser)
-
   listingQueries.getListings(options)
     .then((listings) => {
       templateVars.listings = listings;
-      res.render('index', templateVars);
-    });
+    })
+    .then(() => {
+      userQueries.getUserById(currentUser)
+        .then((userDetails) => {
+          templateVars.userDetails = userDetails
+          res.render('index', templateVars);
+        })
+    })
 });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
-

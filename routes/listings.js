@@ -8,6 +8,7 @@ router.use(cookieSession({
 }));
 
 const listingQueries = require('../db/queries/listings-queries')
+const userQueries = require('../db/queries/users-queries')
 
 // Listings Database (json)
 router.get('/', (req, res) => {

@@ -42,7 +42,13 @@ router.get('/:userid/listings', (req, res) => {
     listingQueries.getListingsByUser(userid)
       .then((listings) => {
         templateVars.listings = listings
-        res.render('listings', templateVars);
+      })
+      .then(() => {
+        userQueries.getUserById(currentUser)
+          .then((userDetails) => {
+            templateVars.userDetails = userDetails
+            res.render('listings', templateVars);
+          })
       })
   }
 });
