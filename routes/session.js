@@ -85,7 +85,7 @@ router.post('/register', (req, res) => {
   })
 });
 
-// Click Button to Logout
+// Click Button to Logout and Empty Cookie Session
 router.post('/logout', (req, res) => {
   req.session = null;
   res.redirect('/');

@@ -53,7 +53,6 @@ app.use('/create', createRoutes);
 app.use('/session', sessionRoutes);
 app.use('/send-email', sendEmailRoutes);
 
-const userDatabase = require('./userDatabase');
 const listingQueries = require('./db/queries/listings-queries');
 const userQueries = require('./db/queries/users-queries');
 
@@ -81,7 +80,7 @@ app.post('/', (req, res) => {
   let maxPrice = req.body.maxPrice;
   let options = { minPrice, maxPrice };
 
-  const templateVars = { currentUser: userDatabase[currentUser] };
+  const templateVars = { currentUser };
   // console.log(currentUser)
 
   listingQueries.getListings(options)
