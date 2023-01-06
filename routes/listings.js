@@ -7,23 +7,23 @@ router.use(cookieSession({
   keys: ['key1', 'key2']
 }));
 
-const listingQueries = require('../db/queries/listings-queries')
-const userQueries = require('../db/queries/users-queries')
+const listingQueries = require('../db/queries/listings-queries');
+const userQueries = require('../db/queries/users-queries');
 
 // Listings Database (json)
 router.get('/', (req, res) => {
   listingQueries.getListings()
     .then((listings) => {
-      res.json(listings)
-    })
+      res.json(listings);
+    });
 });
 
 // Individual Listing Page (json)
 router.get('/:id', (req, res) => {
   listingQueries.getListingById(req.params.id)
     .then((listing) => {
-      res.json(listing)
-    })
+      res.json(listing);
+    });
 });
 
 // Delete listing
@@ -37,7 +37,7 @@ router.post('/:listingId', (req, res) => {
     })
     .catch((err) => {
       console.log('err', err);
-    })
+    });
 });
 
 // mark as sold
@@ -51,7 +51,7 @@ router.post('/sold/:listingId', (req, res) => {
     })
     .catch((err) => {
       console.log('err', err);
-    })
+    });
 });
 
 

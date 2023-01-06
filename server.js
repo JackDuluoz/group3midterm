@@ -72,29 +72,57 @@ app.get('/', (req, res) => {
     .then(() => {
       userQueries.getUserById(currentUser)
         .then((userDetails) => {
-        templateVars.userDetails = userDetails
-        res.render('index', templateVars);
-      })
-    })
+          templateVars.userDetails = userDetails;
+          res.render('index', templateVars);
+        });
+    });
 });
 
 app.post('/', (req, res) => {
   let currentUser = req.session.user_id;
   let minPrice = req.body.minPrice;
   let maxPrice = req.body.maxPrice;
-  let options = { minPrice, maxPrice };
+  let favorites = req.body.favorites;
+  let options = { minPrice, maxPrice, favorites, currentUser };
+
   const templateVars = { currentUser };
+  console.log('currentUser', currentUser);
+
   listingQueries.getListings(options)
     .then((listings) => {
+      console.log(listings);
       templateVars.listings = listings;
-    })
-    .then(() => {
-      userQueries.getUserById(currentUser)
-        .then((userDetails) => {
-          templateVars.userDetails = userDetails
-          res.render('index', templateVars);
-        })
-    })
+      res.render('index', templateVars);
+    });
+});
+
+app.post('/favorite', (req, res) => {
+  let currentUser = req.session.user_id;
+  let listingid = req.body.listingid;
+  console.log('listingid', listingid);
+
+  // listingQueries.addToFavorites(currentUser, listingid)
+  //   .then((favorite) => {
+  //     res.send(favorite);
+  //   })
+  //   .catch(error => {
+  //     console.log("Something went wrong in server.js!");
+  //   });
+
+
+  listingQueries.checkIfFavorited(currentUser, listingid)
+    .then((res) => {
+      // console.log('res.rows', res.rows);
+
+      if (!res.rows.length) {
+        console.log('Added to favorites!');
+        listingQueries.addToFavorites(currentUser, listingid);
+        // document.getElementById(`${listingid}`).innerHTML = 'done!';
+      } else {
+        console.log('Already favorited!');
+      }
+    });
+
 });
 
 app.listen(PORT, () => {

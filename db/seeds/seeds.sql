@@ -4,7 +4,7 @@ VALUES ('Bob', 'bob123', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQg
         ('Michael Green', 'michaelgreen', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.',
         '4688 Victoria Park Ave, Toronto ON', 'michael@lighthouse.ca', '6042146455'),
         ('Jimmy Zhang', 'jimmyzhang', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.',
-        '4561 No. 3 Road, Richmond BC', 'michael@lighthouse.ca', '4166153580'),
+        '4561 No. 3 Road, Richmond BC', 'jimmy@lighthouse.ca', '4166153580'),
         ('Kirsten Hammond', 'kirstenhammond', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.',
         '557 5th Avenue, Hythe AB', 'kirsten@lighthouse.ca', '7803560378'),
         ('Peter Griffin', 'petergriffin', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.',

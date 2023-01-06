@@ -4,20 +4,33 @@ const getListings = (options) => {
 
   const queryParams = [];
 
-  let queryString = `SELECT * FROM listings `;
+  let queryString = `SELECT listings.* FROM listings `;
+
+  if (options && options.favorites) {
+    queryString += `
+    INNER JOIN favorites ON listings.id = favorites.listing_id
+    JOIN users ON users.id = favorites.user_id
+    WHERE users.id = ${options.currentUser} 
+     `;
+  }
 
   if (options && options.minPrice) {
     queryParams.push(`${options.minPrice}`);
-    queryString += `WHERE price >= $${queryParams.length} `;
+
+    if (options.favorites) {
+      queryString += `AND price >= $${queryParams.length} `;
+    } else {
+      queryString += `WHERE price >= $${queryParams.length} `;
+    }
   }
 
   if (options && options.maxPrice) {
     queryParams.push(`${options.maxPrice}`);
 
-    if (options.minPrice) {
-      queryString += `AND price <= $${queryParams.length}`;
+    if (options.minPrice || options.favorites) {
+      queryString += `AND price <= $${queryParams.length} `;
     } else {
-      queryString += `WHERE price <= $${queryParams.length}`;
+      queryString += `WHERE price <= $${queryParams.length} `;
     }
   }
 
@@ -52,9 +65,9 @@ const getListingName = (listingId) => {
 //delete listing in mylistings
 const deleteListingQuery = (listingId) => {
   return db.query('DELETE FROM listings WHERE listings.id = $1', [listingId])
-  .then((res) => {
-    console.log('listing deleted', res);
-  });
+    .then((res) => {
+      console.log('listing deleted', res);
+    });
 };
 
 
@@ -63,7 +76,7 @@ const addListing = (userId, name, description, price, size, gender, condition) =
                   VALUES ($1, $2, $3, $4, 'https://process.fs.grailed.com/AJdAgnqCST4iPtnUxiGtTz/auto_image/cache=expiry:max/rotate=deg:exif/output=quality:90/compress/PJz2ugNrQx28qykcwwFH', $5, $6, $7, CURRENT_TIMESTAMP, null, false) RETURNING *`,
     [userId, name, description, price, size, gender, condition])
     .then(result => {
-      console.log(result.rows[0])
+      console.log(result.rows[0]);
       return result.rows[0];
     });
 };
@@ -71,13 +84,26 @@ const addListing = (userId, name, description, price, size, gender, condition) =
 //mark as sold query
 const markAsSoldQuery = (listingId) => {
   return db.query(`UPDATE listings SET name = 'SOLD', description = 'SOLD' WHERE listings.id = $1 `, [listingId])
-  .then((res) => {
-    console.log('listing marked as sold', res);
-  });
-}
+    .then((res) => {
+      console.log('listing marked as sold', res);
+    });
+};
+
+const addToFavorites = (user_id, listing_id) => {
+  return db.query(`INSERT INTO favorites (user_id, listing_id)
+  VALUES ($1, $2)`, [user_id, listing_id]);
+};
+
+// If favorited, it gives one result. If nothing, it does not give a result
+const checkIfFavorited = (user_id, listing_id) => {
+  return db.query(`SELECT 1 FROM favorites JOIN users ON favorites.user_id = users.id
+  JOIN listings ON favorites.listing_id = listings.id
+  WHERE users.id = $1 AND listings.id = $2
+  GROUP BY users.id, listings.id, favorites.id;`, [user_id, listing_id]);
+};
 
 
-module.exports = { getListings, getListingById, getListingsByUser, getListingName, addListing, deleteListingQuery, markAsSoldQuery };
+module.exports = { getListings, getListingById, getListingsByUser, getListingName, addListing, deleteListingQuery, markAsSoldQuery, addToFavorites, checkIfFavorited };
 
 // \i db/schema/schema.sql
 // \i db/seeds/seeds.sql
