@@ -32,23 +32,5 @@ CREATE TABLE listings (
 CREATE TABLE favorites (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id),
-  listing_id INTEGER REFERENCES listings(id)
+  listing_id INTEGER REFERENCES listings(id) ON DELETE CASCADE
 );
-
-CREATE TABLE purchases (
-  id SERIAL PRIMARY KEY NOT NULL,
-  user_id INTEGER REFERENCES users(id),
-  listing_id INTEGER REFERENCES listings(id),
-  purchase_date TIMESTAMP
-);
-
-CREATE TABLE messages (
-  id SERIAL PRIMARY KEY NOT NULL,
-  sender INTEGER REFERENCES users(id),
-  receiver INTEGER REFERENCES users(id),
-  message TEXT,
-  time_sent TIMESTAMP
-  );
-
-
-

@@ -84,22 +84,24 @@ app.post('/', (req, res) => {
   let maxPrice = req.body.maxPrice;
   let favorites = req.body.favorites;
   let options = { minPrice, maxPrice, favorites, currentUser };
-
   const templateVars = { currentUser };
-  console.log('currentUser', currentUser);
-
   listingQueries.getListings(options)
     .then((listings) => {
-      console.log(listings);
       templateVars.listings = listings;
-      res.render('index', templateVars);
-    });
+    })
+    .then(() => {
+      userQueries.getUserById(currentUser)
+        .then((userDetails) => {
+          templateVars.userDetails = userDetails
+          res.render('index', templateVars);
+        })
+    })
 });
 
 app.post('/favorite', (req, res) => {
   let currentUser = req.session.user_id;
   let listingid = req.body.listingid;
-  console.log('listingid', listingid);
+  // console.log('listingid', listingid);
 
   // listingQueries.addToFavorites(currentUser, listingid)
   //   .then((favorite) => {
@@ -108,7 +110,6 @@ app.post('/favorite', (req, res) => {
   //   .catch(error => {
   //     console.log("Something went wrong in server.js!");
   //   });
-
 
   listingQueries.checkIfFavorited(currentUser, listingid)
     .then((res) => {
