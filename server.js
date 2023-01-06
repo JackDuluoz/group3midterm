@@ -121,6 +121,7 @@ app.post('/favorite', (req, res) => {
         // document.getElementById(`${listingid}`).innerHTML = 'done!';
       } else {
         console.log('Already favorited!');
+        listingQueries.deleteFromFavorites(currentUser, listingid)
       }
     });
 

@@ -10,7 +10,7 @@ const getListings = (options) => {
     queryString += `
     INNER JOIN favorites ON listings.id = favorites.listing_id
     JOIN users ON users.id = favorites.user_id
-    WHERE users.id = ${options.currentUser} 
+    WHERE users.id = ${options.currentUser}
      `;
   }
 
@@ -94,6 +94,10 @@ const addToFavorites = (user_id, listing_id) => {
   VALUES ($1, $2)`, [user_id, listing_id]);
 };
 
+const deleteFromFavorites = (user_id, listing_id) => {
+  return db.query(`DELETE FROM favorites WHERE user_id = $1 AND listing_id = $2`, [user_id, listing_id]);
+};
+
 // If favorited, it gives one result. If nothing, it does not give a result
 const checkIfFavorited = (user_id, listing_id) => {
   return db.query(`SELECT 1 FROM favorites JOIN users ON favorites.user_id = users.id
@@ -103,7 +107,4 @@ const checkIfFavorited = (user_id, listing_id) => {
 };
 
 
-module.exports = { getListings, getListingById, getListingsByUser, getListingName, addListing, deleteListingQuery, markAsSoldQuery, addToFavorites, checkIfFavorited };
-
-// \i db/schema/schema.sql
-// \i db/seeds/seeds.sql
+module.exports = { getListings, getListingById, getListingsByUser, getListingName, addListing, deleteListingQuery, markAsSoldQuery, addToFavorites, checkIfFavorited, deleteFromFavorites };
