@@ -32,8 +32,10 @@
         <input type="text" id="min" name="minPrice">
         <label for="maxPrice">max $</label>
         <input type="text" id="max" name="maxPrice">
+        <% if (currentUser) { %>
         <label for="favorites" name="favorites">favorites</label>
         <input type="checkbox" name="favorites">
+        <% } %>
         <button type="submit">filter</button>
     </form>
     </div>
@@ -50,7 +52,9 @@
             <th>Condition</th>
             <th>Listing Date</th>
             <th>Message Seller</th>
+            <% if (currentUser) { %>
             <th>Favorite</th>
+            <% } %>
           </tr>
         </thead>
         <tbody id="data-output">
@@ -70,12 +74,15 @@
             <button type="submit" class="btn btn-primary">Message Seller</button><br>
             </form>
           </td>
-          <td>
-          <form method="POST" action="/favorite">
-            <button type="submit" class="fa-regular fa-heart favorite" listing-id="<%= listing.id %>" style="border-color: transparent"></button><br>
-            <span id="<%= listing.id %>"></span>
-            </form>
-        </td>
+          <% if (currentUser) { %>
+            <td>
+              <form method="POST" action="/favorite">
+                <button type="submit" class="fa-regular fa-heart favorite" listing-id="<%= listing.id %>"
+                  style="border-color: transparent"></button><br>
+                <span id="<%= listing.id %>"></span>
+              </form>
+            </td>
+          <% } %>
         </tr>
         <%}%>
         </tbody>
