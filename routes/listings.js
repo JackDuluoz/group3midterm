@@ -7,10 +7,9 @@ router.use(cookieSession({
   keys: ['key1', 'key2']
 }));
 
-const userDatabase = require('../userDatabase')
 const listingQueries = require('../db/queries/listings-queries')
 
-// Listings Database
+// Listings Database (json)
 router.get('/', (req, res) => {
   listingQueries.getListings()
     .then((listings) => {
@@ -18,27 +17,12 @@ router.get('/', (req, res) => {
     })
 });
 
-// Individual Listing Pages
+// Individual Listing Page (json)
 router.get('/:id', (req, res) => {
   listingQueries.getListingById(req.params.id)
     .then((listing) => {
       res.json(listing)
     })
-});
-
-// Create a new listing when logged in
-router.post('/', (req, res) => {
-
-});
-
-// Individual listing by id
-router.get('/:id', (req, res) => {
-
-});
-
-// Edit listing
-router.put('/:id', (req, res) => {
-
 });
 
 // Delete listing

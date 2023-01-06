@@ -22,3 +22,6 @@
       </form>
     </section>
   </article>
+
+\i db/schema/schema.sql
+\i db/seeds/seeds.sql

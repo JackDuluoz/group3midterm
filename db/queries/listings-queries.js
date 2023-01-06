@@ -60,6 +60,3 @@ const addListing = (userId, name, description, price, size, gender, condition) =
 };
 
 module.exports = { getListings, getListingById, getListingsByUser, getListingName, addListing };
-
-// \i db/schema/schema.sql
-// \i db/seeds/seeds.sql
