@@ -49,8 +49,16 @@ const getListingName = (listingId) => {
     });
 };
 
+//delete listing in mylistings
+const deleteListingQuery = (listingId) => {
+  return db.query('DELETE FROM listings WHERE listings.id = $1', [listingId])
+  .then((res) => {
+    console.log('listing deleted', res);
+  });
+};
 
-module.exports = { getListings, getListingById, getListingsByUser, getListingName };
+
+module.exports = { getListings, getListingById, getListingsByUser, getListingName, deleteListingQuery };
 
 // \i db/schema/schema.sql
 // \i db/seeds/seeds.sql

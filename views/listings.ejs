@@ -18,37 +18,64 @@
 </head>
 
 <body>
-    <%- include('partials/_header') %>
-  <h1 class="currentpage"> / my listings</h1>
+  <%- include('partials/_header') %>
+    <h1 class="currentpage"> / my listings</h1>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Image</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Size</th>
-        <th>Gender</th>
-        <th>Condition</th>
-        <th>Listing Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% for (listing of listings) {%>
+    <table>
+      <thead>
         <tr>
-          <td><img src="<%= listing.photo_url %>" /></td>
-          <td><%= listing.name %></td>
-          <td><%= listing.description %></td>
-          <td><%= listing.price %></td>
-          <td><%= listing.size %></td>
-          <td><%= listing.gender %></td>
-          <td><%= listing.condition %></td>
-          <td><%= listing.listing_date %></td>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Size</th>
+          <th>Gender</th>
+          <th>Condition</th>
+          <th>Listing Date</th>
+          <th>Mark as sold</th>
+          <th>Delete</th>
         </tr>
-        <%}%>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% for (listing of listings) {%>
+          <tr>
+            <td><img src="<%= listing.photo_url %>" /></td>
+            <td>
+              <%= listing.name %>
+            </td>
+            <td>
+              <%= listing.description %>
+            </td>
+            <td>
+              <%= listing.price %>
+            </td>
+            <td>
+              <%= listing.size %>
+            </td>
+            <td>
+              <%= listing.gender %>
+            </td>
+            <td>
+              <%= listing.condition %>
+            </td>
+            <td>
+              <%= listing.listing_date %>
+            </td>
+            <td>
+              <form method="POST" action="/users/:userid/listings">
+                <button type="submit" class="btn btn-primary">Sold</button><br>
+              </form>
+            </td>
+
+            <td>
+              <form method="POST" action="/listings/<%= listing.id %>">
+                <button type="submit" class="btn btn-primary">Delete</button><br>
+              </form>
+            </td>
+          </tr>
+          <%}%>
+      </tbody>
+    </table>
 </body>
 
 </html>

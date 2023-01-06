@@ -42,8 +42,17 @@ router.put('/:id', (req, res) => {
 });
 
 // Delete listing
-router.delete('/:id', (req, res) => {
 
+router.post('/:listingId', (req, res) => {
+  const userId = req.session.user_id;
+  const listingId = req.params.listingId;
+  listingQueries.deleteListingQuery(listingId)
+    .then(() => {
+      res.redirect(`/users/${userId}/listings`);
+    })
+    .catch((err) => {
+      console.log('err', err);
+    })
 });
 
 module.exports = router;
