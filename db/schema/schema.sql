@@ -19,7 +19,7 @@ CREATE TABLE listings (
   user_id INTEGER REFERENCES users(id),
   name VARCHAR(255),
   description TEXT,
-  price INTEGER,
+  price NUMERIC,
   photo_url VARCHAR(255),
   size VARCHAR(255),
   gender VARCHAR(255),
@@ -50,5 +50,5 @@ CREATE TABLE messages (
   time_sent TIMESTAMP
   );
 
-  
+
 
