@@ -8,7 +8,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+
+<!--
+  Bootstrap stretch
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+ -->
+ <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
 
@@ -40,8 +45,10 @@
 
     </form>
     </div>
-      <table>
-        <thead>
+<br>
+
+<table>
+  <thead>
           <tr>
             <th>Image</th>
             <th>Name</th>
@@ -53,42 +60,84 @@
             <th>Listing Date</th>
 
             <% if (currentUser) { %>
-            <th>Message Seller</th>
-            <th>Favorite</th>
-            <% } %>
-          </tr>
+              <th>Message Seller</th>
+              <th>Favorite</th>
+              <% } %>
+            </tr>
         </thead>
         <tbody id="data-output">
         <% for (listing of listings) {%>
-        <tr>
-          <td><img src="<%= listing.photo_url %>"/></td>
-          <td><%= listing.name %></td>
-          <td><%= listing.description %></td>
-          <td>$<%= listing.price %></td>
-          <td><%= listing.size %></td>
-          <td><%= listing.gender %></td>
+          <tr>
+            <td><img src="<%= listing.photo_url %>"/></td>
+            <td><%= listing.name %></td>
+            <td><%= listing.description %></td>
+            <td>$<%= listing.price %></td>
+            <td><%= listing.size %></td>
+            <td><%= listing.gender %></td>
           <td><%= listing.condition %></td>
           <td><%= listing.listing_date %></td>
 
           <% if (currentUser) { %>
             <td>
               <form method="POST" action="/send-email/<%= listing.id%>">
-                <button type="submit" class="fa-regular fa-envelope message" style="border-color: transparent"></button><br>
+                <button type="submit" class="fa-regular fa-envelope message" ></button><br>
               </form>
             </td>
             <td>
               <form method="POST" action="/favorite">
                 <button type="submit" class="fa-regular fa-heart favorite" listing-id="<%= listing.id %>"
-                  style="border-color: transparent"></button><br>
-                <span id="<%= listing.id %>"></span>
-              </form>
-            </td>
-          <% } %>
-        </tr>
-        <%}%>
-        </tbody>
-      </table>
-    </section>
+                  ></button><br>
+                  <span id="<%= listing.id %>"></span>
+                </form>
+              </td>
+              <% } %>
+            </tr>
+            <%}%>
+          </tbody>
+        </table>
+      </section>
       <%- include('partials/_footer') %>
-</body>
-</html>
+    </body>
+    </html>
+
+    <!--
+      Bootstrap stretch- unfinished
+      <section class="bsgrid">
+          <% for (listing of listings) {%>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <img src="<%= listing.photo_url %>"/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col"><%= listing.name %></div>
+              <div class="col">$<%= listing.price %></div>
+            </div>
+            <div class="row">
+              <div class="col"><%= listing.description %></div>
+            </div>
+            <div class="row">
+              <div class="col">Size: <%= listing.size %></div>
+              <div class="col">Gender: <%= listing.gender %></div>
+              <div class="col">Condition: <%= listing.condition %></div>
+            </div>
+            <div class="row">
+              <div class="col"><%= listing.listing_date %></div>
+              <% if (currentUser) { %>
+              <div class="col">
+                <form method="POST" action="/send-email/<%= listing.id%>">
+                  <button type="submit" class="fa-regular fa-envelope message" style="border-color: transparent"></button><br>
+                </form>
+              </div>
+              <div class="col">
+                <form method="POST" action="/favorite">
+                  <button type="submit" class="fa-regular fa-heart favorite" listing-id="<%= listing.id %>"
+                    style="border-color: transparent"></button><br>
+                  <span id="<%= listing.id %>"></span>
+              </div>
+              <% } %>
+            </div>
+          </div>
+          <% } %>
+        </section> -->

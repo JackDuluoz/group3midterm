@@ -36,11 +36,13 @@ body {
   flex-grow: 0.7;
   font-size: 1.5rem;
   text-decoration: none;
+  color: black;
 }
 
 .nav-user,
 .nav-link {
   text-decoration: none;
+  color: black;
 }
 
 
@@ -67,19 +69,15 @@ input {
 table:not(.newlistingtable):not(.logintable):not(.registertable) {
   width: 100%;
   margin: 30px auto;
+  text-align: center;
+
 
   th {
     padding: 10px 0;
-    background-color: #f4f4f4;
-    border: thin solid #d4d4d4;
   }
 
   td {
     padding: 10px;
-    border: thin solid #d4d4d4;
-    width: auto;
-    text-align: center;
-    background-color: #fff;
   }
 
   img {
@@ -89,6 +87,13 @@ table:not(.newlistingtable):not(.logintable):not(.registertable) {
 
 
 //Favorite and message icon
+
+.favorite,
+.message {
+  font-size: 2rem;
+  border-color: transparent;
+}
+
 .favorite:hover,
 .message:hover {
   color: red;
