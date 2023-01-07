@@ -1,5 +1,8 @@
+//All SQL queries related to item listings
+
 const db = require('../connection');
 
+//filtering by max price, min price and favorites
 const getListings = (options) => {
 
   const queryParams = [];
@@ -8,8 +11,8 @@ const getListings = (options) => {
 
   if (options && options.favorites) {
     queryString += `
-    INNER JOIN favorites ON listings.id = favorites.listing_id
-    JOIN users ON users.id = favorites.user_id
+    INNER JOIN favorites ON listings.id = favorites.listingId
+    JOIN users ON users.id = favorites.userId
     WHERE users.id = ${options.currentUser}
      `;
   }
@@ -48,13 +51,15 @@ const getListingById = (id) => {
     });
 };
 
-const getListingsByUser = (user_id) => {
-  return db.query('SELECT * FROM listings WHERE user_id = $1', [user_id])
+const getListingsByUser = (userId) => {
+  return db.query('SELECT * FROM listings WHERE userId = $1', [userId])
     .then((listings) => {
       return listings.rows;
     });
 };
 
+
+//get listing name for email subject header
 const getListingName = (listingId) => {
   return db.query('SELECT name FROM listings WHERE id = $1', [listingId])
     .then((res) => {
@@ -70,18 +75,18 @@ const deleteListingQuery = (listingId) => {
     });
 };
 
-
+// adds new item to listings
 const addListing = (userId, name, description, price, size, gender, condition) => {
-  return db.query(`INSERT INTO listings (user_id, name, description, price, photo_url, size, gender, condition, listing_date, sold_date, isSold)
+  return db.query(`INSERT INTO listings (userId, name, description, price, photo_url, size, gender, condition, listing_date, sold_date, isSold)
                   VALUES ($1, $2, $3, $4, 'https://process.fs.grailed.com/AJdAgnqCST4iPtnUxiGtTz/auto_image/cache=expiry:max/rotate=deg:exif/output=quality:90/compress/PJz2ugNrQx28qykcwwFH', $5, $6, $7, CURRENT_TIMESTAMP, null, false) RETURNING *`,
-    [userId, name, description, price, size, gender, condition])
+  [userId, name, description, price, size, gender, condition])
     .then(result => {
       console.log(result.rows[0]);
       return result.rows[0];
     });
 };
 
-//mark as sold query
+//mark items as sold
 const markAsSoldQuery = (listingId) => {
   return db.query(`UPDATE listings SET name = 'SOLD', description = 'SOLD' WHERE listings.id = $1 `, [listingId])
     .then((res) => {
@@ -89,21 +94,23 @@ const markAsSoldQuery = (listingId) => {
     });
 };
 
-const addToFavorites = (user_id, listing_id) => {
-  return db.query(`INSERT INTO favorites (user_id, listing_id)
-  VALUES ($1, $2)`, [user_id, listing_id]);
+
+//favorites queries
+const addToFavorites = (userId, listingId) => {
+  return db.query(`INSERT INTO favorites (userId, listingId)
+  VALUES ($1, $2)`, [userId, listingId]);
 };
 
-const deleteFromFavorites = (user_id, listing_id) => {
-  return db.query(`DELETE FROM favorites WHERE user_id = $1 AND listing_id = $2`, [user_id, listing_id]);
+const deleteFromFavorites = (userId, listingId) => {
+  return db.query(`DELETE FROM favorites WHERE userId = $1 AND listingId = $2`, [userId, listingId]);
 };
 
 // If favorited, it gives one result. If nothing, it does not give a result
-const checkIfFavorited = (user_id, listing_id) => {
-  return db.query(`SELECT 1 FROM favorites JOIN users ON favorites.user_id = users.id
-  JOIN listings ON favorites.listing_id = listings.id
+const checkIfFavorited = (userId, listingId) => {
+  return db.query(`SELECT 1 FROM favorites JOIN users ON favorites.userId = users.id
+  JOIN listings ON favorites.listingId = listings.id
   WHERE users.id = $1 AND listings.id = $2
-  GROUP BY users.id, listings.id, favorites.id;`, [user_id, listing_id]);
+  GROUP BY users.id, listings.id, favorites.id;`, [userId, listingId]);
 };
 
 
