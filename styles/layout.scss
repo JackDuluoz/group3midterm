@@ -1,20 +1,24 @@
 // See: https://sass-lang.com/
 
+//Use REM in relation to 16px font size
+
+
 * {
   background-color: white;
   color: black;
   font-size: 16px;
 }
 
+
 header {
   height: 3rem;
   margin: auto;
-  margin-top: 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-
+  padding-top: 5rem;
+  padding-bottom: 3rem;
 }
 
 footer {
@@ -28,24 +32,24 @@ button {
 }
 
 button:not(.fa-regular):hover {
-  box-shadow: 0.15rem 0.15rem grey;
+  box-shadow: 0.18rem 0.18rem grey;
   cursor: pointer;
 }
 
-.nav-logo{
+.nav-logo {
   flex-grow: 0.7;
   font-size: 1.5rem;
   text-decoration: none;
 }
 
 .nav-user,
-.nav-link{
+.nav-link {
   text-decoration: none;
 }
 
 body {
   margin: auto;
-  width: 90%
+  width: 90%;
 }
 
 .filter,
@@ -53,9 +57,89 @@ body {
   font-size: 1.2rem;
 }
 
-input{
+input {
   border: none;
   border-bottom: 1px solid black
 }
 
 
+.newlistingform {
+  width: 300px;
+}
+
+.favorite:hover {
+  color: red;
+}
+
+table:not(.newlistingtable):not(.logintable):not(.registertable) {
+  width: 1000px;
+  margin: 30px auto;
+
+  th {
+    padding: 10px 0;
+    background-color: #f4f4f4;
+    /* background-color: #fff; */
+    border: thin solid #d4d4d4;
+  }
+
+  td {
+    padding: 10px;
+    border: thin solid #d4d4d4;
+    width: 18%;
+    text-align: center;
+    background-color: #fff;
+
+    &.total-price {
+      font-weight: bold;
+      font-size: 22px;
+    }
+  }
+
+  img {
+    width: 70%;
+  }
+
+  a {
+    text-decoration: none;
+    color: darkred;
+    background-color: #ffecef;
+    padding: 10px 15px;
+
+    &:active {
+      background-color: #ccf4d6;
+      color: green;
+    }
+  }
+
+  select {
+    padding: 10px;
+    width: 200px;
+    font-size: 16px;
+    border: thin solid #d4d4d4;
+    background-color: transparent;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+
+
+
+.homebannerimages {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.filter {
+
+  input {
+    width: 2rem;
+  }
+
+  button {
+    font-size: 1rem;
+  }
+}
