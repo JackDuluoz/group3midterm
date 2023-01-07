@@ -26,24 +26,24 @@
   <%- include('partials/_header') %>
   <section class="container">
     <h1 class="currentpage">/ home</h1>
-    <h1 class="filter">filter  <i class="fa-solid fa-filter"></i></h1>
-    <form action="/" method="post">
-        <label for="minPrice">min $</label>
-        <input type="text" id="min" name="minPrice">
-        <label for="maxPrice">max $</label>
-        <input type="text" id="max" name="maxPrice">
-        <% if (currentUser) { %>
-        <label for="favorites" name="favorites">favorites</label>
-        <input type="checkbox" name="favorites">
+    <form class ='filterbar' action="/" method="post">
+      <label for="minPrice">min $</label>
+      <input type="text" id="min" name="minPrice">
+      <label for="maxPrice"> max $</label>
+      <input type="text" id="max" name="maxPrice">
+      <% if (currentUser) { %>
+        <label for="favorites" name="favorites">favorites <input type="checkbox" name="favorites"></label>
+
+        <button type="submit">
+          <i class="fa-solid fa-filter"></i></button>
         <% } %>
-        <button type="submit">filter</button>
+
     </form>
     </div>
       <table>
         <thead>
           <tr>
             <th>Image</th>
-            <th>Seller</th>
             <th>Name</th>
             <th>Description</th>
             <th>Price</th>
@@ -62,10 +62,9 @@
         <% for (listing of listings) {%>
         <tr>
           <td><img src="<%= listing.photo_url %>"/></td>
-          <td><%= listing.user_id %></td>
           <td><%= listing.name %></td>
           <td><%= listing.description %></td>
-          <td><%= listing.price %></td>
+          <td>$<%= listing.price %></td>
           <td><%= listing.size %></td>
           <td><%= listing.gender %></td>
           <td><%= listing.condition %></td>
@@ -74,7 +73,7 @@
           <% if (currentUser) { %>
             <td>
               <form method="POST" action="/send-email/<%= listing.id%>">
-                <button type="submit" class="fa-regular fa-envelope" style="border-color: transparent"></button><br>
+                <button type="submit" class="fa-regular fa-envelope message" style="border-color: transparent"></button><br>
               </form>
             </td>
             <td>

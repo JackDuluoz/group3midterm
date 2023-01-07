@@ -21,21 +21,17 @@ header {
   padding-bottom: 3rem;
 }
 
-footer {
-  position: absolute;
-  width: 100%;
-  justify-content: center;
+//Body
+body {
+  margin: auto;
+  width: 90%;
 }
 
-button {
-  border: 0.1rem solid;
+.currentpage {
+  font-size: 1.2rem;
 }
 
-button:not(.fa-regular):hover {
-  box-shadow: 0.18rem 0.18rem grey;
-  cursor: pointer;
-}
-
+//Nav bar
 .nav-logo {
   flex-grow: 0.7;
   font-size: 1.5rem;
@@ -47,99 +43,78 @@ button:not(.fa-regular):hover {
   text-decoration: none;
 }
 
-body {
-  margin: auto;
-  width: 90%;
+
+//All buttons
+button {
+  border: 0.1rem solid;
 }
 
-.filter,
-.currentpage {
-  font-size: 1.2rem;
+button:not(.fa-regular):hover {
+  box-shadow: 0.18rem 0.18rem grey;
+  cursor: pointer;
 }
 
+// All inputs
 input {
   border: none;
   border-bottom: 1px solid black
 }
 
 
-.newlistingform {
-  width: 300px;
-}
+////Listings
 
-.favorite:hover {
-  color: red;
-}
-
+//tables
 table:not(.newlistingtable):not(.logintable):not(.registertable) {
-  width: 1000px;
+  width: 100%;
   margin: 30px auto;
 
   th {
     padding: 10px 0;
     background-color: #f4f4f4;
-    /* background-color: #fff; */
     border: thin solid #d4d4d4;
   }
 
   td {
     padding: 10px;
     border: thin solid #d4d4d4;
-    width: 18%;
+    width: auto;
     text-align: center;
     background-color: #fff;
-
-    &.total-price {
-      font-weight: bold;
-      font-size: 22px;
-    }
   }
 
   img {
     width: 70%;
   }
-
-  a {
-    text-decoration: none;
-    color: darkred;
-    background-color: #ffecef;
-    padding: 10px 15px;
-
-    &:active {
-      background-color: #ccf4d6;
-      color: green;
-    }
-  }
-
-  select {
-    padding: 10px;
-    width: 200px;
-    font-size: 16px;
-    border: thin solid #d4d4d4;
-    background-color: transparent;
-
-    &:focus {
-      outline: none;
-    }
-  }
 }
 
 
+//Favorite and message icon
+.favorite:hover,
+.message:hover {
+  color: red;
+  cursor: pointer;
+}
 
 
-.homebannerimages {
+//Filtering
+
+.filterbar {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: start;
+  gap: 1rem;
 }
 
-.filter {
+#max,
+#min {
+  width: 4rem;
+}
 
-  input {
-    width: 2rem;
-  }
-
-  button {
-    font-size: 1rem;
-  }
+//Footer
+footer {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 2.5rem;
 }
