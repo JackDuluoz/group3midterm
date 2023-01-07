@@ -24,7 +24,7 @@ CREATE TABLE listings (
   size VARCHAR(255),
   gender VARCHAR(255),
   condition VARCHAR(255),
-  listing_date TIMESTAMP NOT NULL,
+  listing_date DATE NOT NULL,
   sold_date TIMESTAMP,
   isSold BOOLEAN NOT NULL DEFAULT FALSE
 );
