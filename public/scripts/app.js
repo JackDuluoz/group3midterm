@@ -1,5 +1,7 @@
+//Jquery and Ajax logic for handling adding favorites onClick
+
 $(document).ready(function() {
-  console.log('Document Ready');
+  //console.log('Document Ready');
 
   $('.favorite').on("click", function(event) {
     event.preventDefault();

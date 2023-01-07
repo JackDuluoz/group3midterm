@@ -9,7 +9,6 @@ router.use(cookieSession({
 }));
 
 const userQueries = require('../db/queries/users-queries')
-const listingQueries = require('../db/queries/listings-queries')
 
 // Login Page
 router.get('/login', (req, res) => {
@@ -55,7 +54,7 @@ router.post('/login', (req, res) => {
     })
 });
 
-// Form Sumission to Register
+// Form Submission to Register
 router.post('/register', (req, res) => {
   const newEmail = req.body.email;
   const newPassword = req.body.password;

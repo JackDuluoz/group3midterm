@@ -8,7 +8,6 @@ router.use(cookieSession({
 }));
 
 const listingQueries = require('../db/queries/listings-queries');
-const userQueries = require('../db/queries/users-queries');
 
 // Listings Database (json)
 router.get('/', (req, res) => {
@@ -40,7 +39,7 @@ router.post('/:listingId', (req, res) => {
     });
 });
 
-// mark as sold
+// Mark as sold
 router.post('/sold/:listingId', (req, res) => {
   const userId = req.session.user_id;
   const listingId = req.params.listingId;
