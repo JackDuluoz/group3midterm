@@ -1,3 +1,5 @@
+/* Seeds for users and listings. Resets to these values when 'npm run db:reset' is run */
+
 INSERT INTO users (name, username, password, address, email, phone_number)
 VALUES ('Bob', 'bob123', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.',
         '123 Sesame Street', 'bob@lighthouse.ca', '6041234567'),

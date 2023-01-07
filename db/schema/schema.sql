@@ -1,7 +1,7 @@
+/* Schema for SQL tables Users, Listings and Favorites */
+
 DROP TABLE IF EXISTS users CASCADE;
-DROP TABLE IF EXISTS messages CASCADE;
 DROP TABLE IF EXISTS favorites CASCADE;
-DROP TABLE IF EXISTS purchases CASCADE;
 DROP TABLE IF EXISTS listings CASCADE;
 
 CREATE TABLE users (

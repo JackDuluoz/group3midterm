@@ -1,4 +1,4 @@
-// PG database client/connection setup
+// PSQL database client/connection setup. Values stored in .env
 const { Pool } = require('pg');
 
 const dbParams = {
@@ -12,7 +12,7 @@ const dbParams = {
 const db = new Pool(dbParams);
 
 db.connect(() => {
-  console.log('Connected to database')
+  console.log('Connected to database');
 });
 
 module.exports = db;
