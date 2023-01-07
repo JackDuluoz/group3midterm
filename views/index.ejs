@@ -51,8 +51,9 @@
             <th>Gender</th>
             <th>Condition</th>
             <th>Listing Date</th>
-            <th>Message Seller</th>
+
             <% if (currentUser) { %>
+            <th>Message Seller</th>
             <th>Favorite</th>
             <% } %>
           </tr>
@@ -69,12 +70,13 @@
           <td><%= listing.gender %></td>
           <td><%= listing.condition %></td>
           <td><%= listing.listing_date %></td>
-          <td>
-            <form method="POST" action="/send-email/<%= listing.id%>">
-            <button type="submit" class="fa-regular fa-envelope" style="border-color: transparent"></button><br>
-            </form>
-          </td>
+
           <% if (currentUser) { %>
+            <td>
+              <form method="POST" action="/send-email/<%= listing.id%>">
+                <button type="submit" class="fa-regular fa-envelope" style="border-color: transparent"></button><br>
+              </form>
+            </td>
             <td>
               <form method="POST" action="/favorite">
                 <button type="submit" class="fa-regular fa-heart favorite" listing-id="<%= listing.id %>"
