@@ -18,27 +18,27 @@ const userQueries = require('../db/queries/users-queries')
 const listingQueries = require('../db/queries/listings-queries')
 
 // Users Database (json)
-router.get('/', (req, res) => {
-  userQueries.getUsers()
-    .then((users) => {
-      res.json(users)
-    })
-});
+// router.get('/', (req, res) => {
+//   userQueries.getUsers()
+//     .then((users) => {
+//       res.json(users)
+//     })
+// });
 
 // Individual User Page (json)
-router.get('/:userid', (req, res) => {
-  userQueries.getUserById(req.params.userid)
-    .then((user) => {
-      res.json(user)
-    })
-});
+// router.get('/:userid', (req, res) => {
+//   userQueries.getUserById(req.params.userid)
+//     .then((user) => {
+//       res.json(user)
+//     })
+// });
 
 // User Listings
 router.get('/:userid/listings', (req, res) => {
   let currentUser = req.session.user_id;
-  let userId = req.params.userid
+  let userId = Number(req.params.userid)
   const templateVars = { currentUser };
-  if (currentUser !== undefined) {
+  if (currentUser === userId) {
     listingQueries.getListingsByUser(userId)
       .then((listings) => {
         templateVars.listings = listings
@@ -50,7 +50,10 @@ router.get('/:userid/listings', (req, res) => {
             res.render('listings', templateVars);
           })
       })
+    return
   }
+  console.log("You cannot access another user's listings!");
+  res.status(400).send("Error 400: You cannot access another user's listings!");
 });
 
 module.exports = router;

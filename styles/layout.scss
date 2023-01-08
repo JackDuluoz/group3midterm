@@ -129,6 +129,7 @@ select {
 .newlistingsubmitbtn {
   width: 10%;
   margin-left: 45%;
+  border-radius: 20%;
 }
 
 input#user_id, input#password {
@@ -141,11 +142,13 @@ input#user_id, input#password {
 #loginbutton {
   width: 20%;
   margin-left: 40%;
+  border-radius: 20%;
 }
 
 #registerbutton {
   width: 30%;
   margin-left: 35%;
+  border-radius: 20%;
 }
 
 ////Listings

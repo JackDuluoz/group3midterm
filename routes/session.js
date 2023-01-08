@@ -36,7 +36,7 @@ router.post('/login', (req, res) => {
   let password = req.body.password;
   if (email === "" || password === "") {
     console.log("Username and/or Password Empty");
-    res.status(404).send("Error 400: Username and/or Password Empty.");
+    res.status(400).send("Error 400: Username and/or Password Empty.");
     return;
   }
   userQueries.checkUserByEmail(email)
@@ -61,7 +61,7 @@ router.post('/register', (req, res) => {
   const hashedNewPassword = bcrypt.hashSync(newPassword, 10);
   if (newEmail === "" || newPassword === "") {
     console.log("Username and/or Password Empty");
-    res.status(404).send("Error 400: Username and/or Password Empty.");
+    res.status(400).send("Error 400: Username and/or Password Empty.");
     return;
   }
   userQueries.checkUserByEmail(newEmail)
