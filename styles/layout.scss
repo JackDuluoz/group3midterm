@@ -175,10 +175,21 @@ table:not(.newlistingtable):not(.logintable):not(.registertable) {
   }
 
   img {
-    width: 100%;
+    max-width: 10vw;
     // height: 100%;
     border-radius: 20%;
   }
+
+}
+
+#homeimg:hover {
+  transform: scale(1.1);
+}
+
+#homeimg:active {
+  transform: scale(2.5);
+  position: fixed;
+  top: 30%;
 }
 
 //Favorite and Message Icons

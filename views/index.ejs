@@ -70,7 +70,7 @@
         <tbody id="data-output">
         <% for (listing of listings) {%>
           <tr>
-            <td><img src="<%= listing.photo_url %>"/></td>
+            <td><img id="homeimg" src="<%= listing.photo_url %>"/></td>
             <td><%= listing.name %></td>
             <td><%= listing.description %></td>
             <td>$<%= listing.price %></td>
