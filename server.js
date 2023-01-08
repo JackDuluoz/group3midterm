@@ -45,6 +45,7 @@ const sendEmailRoutes = require('./routes/sendemail.js');
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
+
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', userRoutes);
@@ -101,30 +102,16 @@ app.post('/', (req, res) => {
 app.post('/favorite', (req, res) => {
   let currentUser = req.session.user_id;
   let listingid = req.body.listingid;
-  // console.log('listingid', listingid);
-
-  // listingQueries.addToFavorites(currentUser, listingid)
-  //   .then((favorite) => {
-  //     res.send(favorite);
-  //   })
-  //   .catch(error => {
-  //     console.log("Something went wrong in server.js!");
-  //   });
-
   listingQueries.checkIfFavorited(currentUser, listingid)
     .then((res) => {
-      // console.log('res.rows', res.rows);
-
       if (!res.rows.length) {
         console.log('Added to favorites!');
         listingQueries.addToFavorites(currentUser, listingid);
-        // document.getElementById(`${listingid}`).innerHTML = 'done!';
       } else {
-        console.log('Already favorited!');
+        console.log('Removed from favorited!');
         listingQueries.deleteFromFavorites(currentUser, listingid)
       }
     });
-
 });
 
 app.listen(PORT, () => {

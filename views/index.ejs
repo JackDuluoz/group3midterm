@@ -29,26 +29,28 @@
 
 <body>
   <%- include('partials/_header') %>
-  <section class="container">
-    <h1 class="currentpage">/ home</h1>
+
+  <main>
+
+    <section class="top-container">
+<h1 class="currentpage">/ Home</h1>
     <form class ='filterbar' action="/" method="post">
-      <label for="minPrice">min $</label>
+      <label for="minPrice">Min $</label>
       <input type="text" id="min" name="minPrice">
-      <label for="maxPrice"> max $</label>
+      <label for="maxPrice"> Max $</label>
       <input type="text" id="max" name="maxPrice">
       <% if (currentUser) { %>
-        <label for="favorites" name="favorites">favorites <input type="checkbox" name="favorites"></label>
+        <label for="favorites" name="favorites">Favorites</label>
+        <input id ="favorites" type="checkbox" name="favorites"></label>
 
+        <% } %>
         <button type="submit">
           <i class="fa-solid fa-filter"></i></button>
-        <% } %>
-
     </form>
-    </div>
-<br>
+  </section>
 
 <table>
-  <thead>
+  <thead class="index-column-heads">
           <tr>
             <th>Image</th>
             <th>Name</th>
@@ -95,7 +97,8 @@
             <%}%>
           </tbody>
         </table>
-      </section>
+        </main>
+
       <%- include('partials/_footer') %>
     </body>
     </html>

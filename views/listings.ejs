@@ -18,7 +18,9 @@
 
 <body>
   <%- include('partials/_header') %>
-    <h1 class="currentpage"> / my listings</h1>
+  <main>
+
+    <h1 class="currentpage-listings"> / My Listings</h1>
 
     <table>
       <thead>
@@ -31,7 +33,7 @@
           <th>Gender</th>
           <th>Condition</th>
           <th>Listing Date</th>
-          <th>Mark as sold</th>
+          <th>Mark Sold</th>
           <th>Delete</th>
         </tr>
       </thead>
@@ -75,6 +77,7 @@
           <%}%>
       </tbody>
     </table>
+    </main>
     <%- include('partials/_footer') %>
 </body>
 </html>

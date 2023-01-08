@@ -2,96 +2,188 @@
 
 //Use REM in relation to 16px font size
 
-
-* {
-  background-color: white;
-  color: black;
-  font-size: 16px;
+html {
+  box-sizing: border-box;
 }
 
+*, *:before, *:after {
+  box-sizing: inherit;
+}
 
 header {
-  height: 3rem;
-  margin: auto;
+  height: 20vh;
+  background-color: rgba(0, 0, 0, .35);
+  background-image: url("../images/header.jpg");
+  background-blend-mode: multiply;
+  background-position: center center;
+  background-size: cover;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  width: 100%;
-  padding-top: 5rem;
-  padding-bottom: 3rem;
+  padding: 2em;
 }
 
 //Body
+
 body {
-  margin: auto;
-  width: 90%;
+  width: 100%;
+  height: 100%;
+  background-color: #ccaf82;
+  background-image: url("https://www.transparenttextures.com/patterns/az-subtle.png");
+  color: black;
+  font-size: 16px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+main {
+  min-height: 60vh;
+  margin-left: 5%;
+  margin-right: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .currentpage {
   font-size: 1.2rem;
+  padding: 1em;
 }
 
-//Nav bar
+//Nav Bar
+
 .nav-logo {
   flex-grow: 0.7;
   font-size: 1.5rem;
+  font-weight: bold;
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
-.nav-user,
-.nav-link {
+.nav-user, .nav-link {
+  font-weight: bold;
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
+.nav-email {
+  font-weight: normal;
+  text-decoration: none;
+  color: white;
+}
 
-//All buttons
+.nav-link:hover, .nav-user:hover {
+  color: lightgrey;
+}
+
+.nav-logo:hover {
+  color: lightgrey;
+}
+
+.logout {
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+  background: transparent;
+  border: none;
+}
+
+.logout:hover {
+  color: lightgrey;
+  cursor: pointer;
+}
+
+//All Buttons
+
 button {
   border: 0.1rem solid;
+  background: transparent;
 }
 
-button:not(.fa-regular):hover {
+button:not(.fa-regular, .logout):hover {
   box-shadow: 0.18rem 0.18rem grey;
   cursor: pointer;
 }
 
-// All inputs
-input {
-  border: none;
-  border-bottom: 1px solid black
+// All Inputs
+
+.newlistingform {
+  margin-bottom: 2em;
 }
 
+input:not(#min):not(#max):not(#favorites):not(#user_id):not(#password) {
+  margin: 0.5em;
+  width: 40vw;
+}
+
+textarea {
+  margin: 0.5em;
+  height: 10vh;
+  width: 40vw;
+}
+
+select {
+  margin: 0.5em;
+  width: 40vw;
+}
+
+.newlistingsubmitbtn {
+  width: 10%;
+  margin-left: 45%;
+}
+
+input#user_id, input#password {
+  margin: 0.5em;
+  border: none;
+  background: transparent;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+#loginbutton {
+  width: 20%;
+  margin-left: 40%;
+}
+
+#registerbutton {
+  width: 30%;
+  margin-left: 35%;
+}
 
 ////Listings
 
-//tables
-table:not(.newlistingtable):not(.logintable):not(.registertable) {
-  width: 100%;
-  margin: 30px auto;
-  text-align: center;
+// Tables
 
+table:not(.newlistingtable):not(.logintable):not(.registertable) {
+
+  text-align: center;
+  margin-bottom: 2em;
+  border-radius: 3%;
+  background-color: rgba(255, 255, 255, 0.2);
+
+  // margin: auto;
 
   th {
-    padding: 10px 0;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 1em;
   }
 
   td {
-    padding: 10px;
+   padding: 0.5em;
   }
 
   img {
-    width: 70%;
+    width: 100%;
+    // height: 100%;
+    border-radius: 20%;
   }
 }
 
+//Favorite and Message Icons
 
-//Favorite and message icon
-
-.favorite,
-.message {
+.favorite, .message {
   font-size: 2rem;
-  border-color: transparent;
+  border: transparent;
+  background: transparent;
 }
 
 .favorite:hover,
@@ -100,26 +192,62 @@ table:not(.newlistingtable):not(.logintable):not(.registertable) {
   cursor: pointer;
 }
 
+// Filtering
 
-//Filtering
-
-.filterbar {
+.top-container {
+  width: 80%;
+  margin-top: 2em;
+  margin-bottom: 2em;
   display: flex;
   flex-direction: row;
-  justify-content: start;
-  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
 }
 
-#max,
-#min {
+.currentpage-create, .currentpage-listings, .currentpage-login, .currentpage-register {
+  width: 80%;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  justify-content: flex-start;
+  font-size: 1.2rem;
+}
+
+#max, #min {
   width: 4rem;
+  margin: 0.5em;
+  border: none;
+  background: transparent;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 40%;
 }
 
-//Footer
+#name, #description, #price, #size, #gender, #condition {
+  border: none;
+  background: transparent;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+// Footer
+
 footer {
-  position: absolute;
-  width: 100%;
+
+  height: 20vh;
+  background-color: rgba(0, 0, 0, .35);
+  background-image: url("../images/header.jpg");
+  background-blend-mode: multiply;
+  background-position: center center;
+  background-size: cover;
   display: flex;
   justify-content: center;
-  padding-bottom: 2.5rem;
+  align-items: center;
+}
+
+#pageTop {
+  color: white;
+  font-weight: bold;
+}
+
+#pageTop:hover {
+  color: lightgrey;
 }

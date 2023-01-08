@@ -18,14 +18,15 @@
 
 <body>
   <%- include('partials/_header') %>
-    <h3 class="currentpage">/ register</h3>
+  <main>
+    <h3 class="currentpage-register">/ Register</h3>
     <div class="userregister">
       <tbody>
         <form method="POST" action="/session/register">
           <table class="registertable">
             <tr>
               <td>
-                <label for="user_id">email</label>
+                <label for="user_id">Email:</label>
               </td>
               <td>
                 <input id="user_id" type="email" name="email" />
@@ -33,7 +34,7 @@
             </tr>
             <tr>
               <td>
-                <label for="password">password</label>
+                <label for="password">Password:</label>
               </td>
               <td>
                 <input id="password" type="password" name="password" />
@@ -41,10 +42,11 @@
             </tr>
           </table>
       </tbody>
-      <br>
-      <button type="submit" class="btn btn-primary">Register</button><br />
+      <button type="submit" id="registerbutton" class="btn btn-primary">Register</button><br />
       </form>
     </div>
+    </main>
+    <%- include('partials/_footer') %>
 </body>
 
 </html>

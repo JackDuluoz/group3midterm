@@ -17,14 +17,15 @@
 
 <body>
   <%- include('partials/_header') %>
-    <h3 class="currentpage">/ login</h3>
+  <main>
+    <h3 class="currentpage-login">/ Login</h3>
     <div class="userlogin">
       <tbody>
         <form method="POST" action="/session/login">
           <table class="logintable">
             <tr>
               <td>
-                <label for="user_id">email</label>
+                <label for="user_id">Email:</label>
               </td>
               <td>
                 <input id="user_id" type="email" name="email" />
@@ -32,7 +33,7 @@
             </tr>
             <tr>
               <td>
-                <label for="password">password</label>
+                <label for="password">Password:</label>
               </td>
               <td>
                 <input id="password" type="password" name="password" />
@@ -40,11 +41,11 @@
             </tr>
           </table>
       </tbody>
-      <br>
-      <button type="submit" class="btn btn-primary">Login</button>
+      <button type="submit" id ="loginbutton" class="btn btn-primary">Login</button>
       </form>
     </div>
-
+    </main>
+<%- include('partials/_footer') %>
 </body>
 
 </html>

@@ -16,9 +16,6 @@ const getUserById = (id) => {
     });
 };
 
-
-
-
 const checkUserByEmail = (email) => {
   return db.query('SELECT * FROM users WHERE email = $1', [email])
     .then(email => {

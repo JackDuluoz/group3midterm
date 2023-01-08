@@ -19,41 +19,87 @@
 <body>
 
   <%- include('partials/_header') %>
-    <h1 class="currentpage">/ create listing</h1>
+  <main>
+    <h1 class="currentpage-create">/ Create Listing</h1>
 
     <form class="newlistingform" method="POST" action="/create">
       <tbody>
         <table class="newlistingtable">
           <tr>
-            <td><label for="name">name</label></td>
-            <td><input type="text" id="name" name="name"></td>
+            <td><label for="name">Name:</label></td>
+            <td><input type="text" id="name" name="name" placeholder="Item Name" required autofocus></td>
           </tr>
           <tr>
-            <td><label for="description">description</label></td>
-            <td><input type="text" id="description" name="description"></td>
+            <td><label for="description">Description:</label></td>
+            <td><textarea type="text" id="description" name="description" placeholder="Describe Your Item" required></textarea></td>
           </tr>
           <tr>
-            <td><label for="price">price</label></td>
-            <td><input type="text" id="price" name="price"></td>
+            <td><label for="price">Price:</label></td>
+            <td><input type="text" id="price" name="price" placeholder="Price" required></td>
           </tr>
           <tr>
-            <td><label for="size">size</label></td>
-            <td><input type="text" id="size" name="size"></td>
+            <td><label for="size">Size:</label></td>
+            <td>
+            <select id="size" name="size" required>
+              <option value="">Choose a Size</option>
+              <option value="4">4</option>
+              <option value="4.5">4.5</option>
+              <option value="5">5</option>
+              <option value="5.5">5.5</option>
+              <option value="6">6</option>
+              <option value="6.5">6.5</option>
+              <option value="7">7</option>
+              <option value="7.5">7.5</option>
+              <option value="8">8</option>
+              <option value="8.5">8.5</option>
+              <option value="9">9</option>
+              <option value="9.5">9.5</option>
+              <option value="10">10</option>
+              <option value="10.5">10.5</option>
+              <option value="11">11</option>
+              <option value="11.5">11.5</option>
+              <option value="12">12</option>
+              <option value="12.5">12.5</option>
+              <option value="13">13</option>
+              <option value="13.5">13.5</option>
+              <option value="14">14</option>
+              <option value="14.5">14.5</option>
+              <option value="15">15</option>
+            </select>
+            </td>
           </tr>
           <tr>
-            <td><label for="gender">gender</label></td>
-            <td><input type="text" id="gender" name="gender"></td>
+            <td><label for="gender">Gender:</label></td>
+            <td>
+            <select id="gender" name="gender" required>
+            <option value="">Select One</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            </select>
+          </td>
           </tr>
           <tr>
-            <td><label for="condition">condition</label></td>
-            <td><input type="text" id="condition" name="condition"></td>
+            <td><label for="condition">Condition:</label></td>
+            <td>
+              <select id="condition" name="condition" required>
+                <option value="">Select One</option>
+                <option value="New With Box">New With Box</option>
+                <option value="New Without Box">New Without Box</option>
+                <option value="Pre-owned - Very Good">Pre-owned - Very Good</option>
+                <option value="Pre-owned - Good">Pre-owned - Good</option>
+                <option value="Pre-owned - Acceptable">Pre-owned - Acceptable</option>
+                <option value="Pre-owned - Hard Worn">Pre-owned - Hard Worn</option>
+              </select>
+            </td>
           </tr>
         </table>
       </tbody>
-      <br>
-      <button type="submit" class="newlistingsubmitbtn">List</button>
+    <button type="submit" class="newlistingsubmitbtn">List</button>
     </form>
 
+
+    </main>
+<%- include('partials/_footer') %>
 </body>
 
 </html>
