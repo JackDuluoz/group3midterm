@@ -60,7 +60,7 @@
               <%= listing.condition %>
             </td>
             <td>
-              <%= listing.listing_date %>
+              <%= listing.listing_date.toString().split('').splice(4, 11).join('') %>
             </td>
             <td>
               <form method="POST" action="/listings/sold/<%= listing.id %>">

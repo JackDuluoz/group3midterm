@@ -76,8 +76,8 @@
             <td>$<%= listing.price %></td>
             <td><%= listing.size %></td>
             <td><%= listing.gender %></td>
-          <td><%= listing.condition %></td>
-          <td><%= listing.listing_date %></td>
+            <td><%= listing.condition %></td>
+            <td><%= listing.listing_date.toString().split('').splice(4, 11).join('') %></td>
 
           <% if (currentUser) { %>
             <td>
